@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:43:55 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:52:25 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,7 @@ int			set_line_type(char *str);
 int			is_direction_char(char c);
 int			is_color_char(char c);
 void		clean_list(t_list **list, char *message);
-void		check_open(char *filename, int *fd);
+void		check_map_open(char *filename, int *fd);
 
 void		check_map_syntax(t_list **list);
 void		check_last_element(t_list **list);

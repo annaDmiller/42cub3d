@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_open.c                                       :+:      :+:    :+:   */
+/*   check_map_open.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:54:38 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 14:29:04 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:52:08 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // Trying to open file normally: if failed, print exit error
 // Return (nothing), exit if failed
 
-void	check_open(char *filename, int *fd)
+void	check_map_open(char *filename, int *fd)
 {
 	*fd = open(filename, __O_DIRECTORY | O_RDONLY);
 	if (*fd != -1)

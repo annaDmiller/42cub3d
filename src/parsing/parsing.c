@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:57:09 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:06:10 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:51:49 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	parsing(int argc, char **argv/*,  t_data **data */)
 	fd = 0;
 	list = NULL;
 	check_argc(argc, argv);
-    check_open(argv[1], &fd);
+    check_map_open(argv[1], &fd);
 	create_map_in_list(fd, &list);
 	check_map_syntax(&list);
 	check_map_duplicates(&list);
