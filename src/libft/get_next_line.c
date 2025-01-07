@@ -6,80 +6,42 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 14:33:04 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 12:35:31 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:09:41 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
 
-static size_t	ft_strlen_nl(const char *str)
+static int	gnl_recursive(int fd, char **line, int index)
 {
-	int	i;
+	char	buf;
+	int		ret;
 
-	i = 0;
-	if (!str)
-		return (0);
-	while (str[i] && str[i] != '\n')
-		i++;
-	if (str[i] == '\n')
-		i++;
-	return (i);
+	ret = read(fd, &buf, 1);
+	if (ret == -1)
+		return (-1);
+	if (ret == 1 && buf != '\n')
+	{
+		if (gnl_recursive(fd, line, index + 1) == -1)
+			return (-1);
+		(*line)[index] = buf;
+	}
+	else
+	{
+		*line = (char *)malloc(sizeof(char) * (index + 1));
+		if (!(*line))
+			return (-1);
+		(*line)[index] = '\0';
+	}
+	return (ret);
 }
 
-char	*strjoin(char *s1, char *s2)
+int	get_next_line(int fd, char **line)
 {
-	int		size_concat;
-	char	*concat;
-	int		i;
-	int		j;
+	int	ret;
 
-	i = 0;
-	j = -1;
-	size_concat = ft_strlen_nl(s1) + ft_strlen_nl(s2);
-	concat = (char *)malloc(size_concat + 1 * sizeof(char));
-	if (!concat)
-		return (NULL);
-	while (s1 && s1[i])
-	{
-		concat[i] = s1[i];
-		i++;
-	}
-	while (s2[++j])
-	{
-		concat[i++] = s2[j];
-		if (s2[j] == '\n')
-			break ;
-	}
-	concat[i] = 0;
-	free(s1);
-	return (concat);
-}
-
-char	*get_next_line(int fd)
-{
-	static char	buffer[BUFFER_SIZE + 1];
-	char		*line;
-	int			i;
-	int			j;
-	int			flag;
-
-	if (BUFFER_SIZE <= 0 || (read(fd, 0, 0) < 0))
-		return (NULL);
-	line = NULL;
-	flag = 0;
-	while (!flag && (buffer[0] || (read(fd, buffer, BUFFER_SIZE) > 0)))
-	{
-		line = strjoin(line, buffer);
-		i = 0;
-		j = 0;
-		while (buffer[i])
-		{
-			if (flag)
-				buffer[j++] = buffer[i];
-			if (buffer[i] == '\n')
-				flag = 1;
-			buffer[i++] = 0;
-		}
-	}
-	return (line);
+	ret = gnl_recursive(fd, line, 0);
+	if (!line || ret == -1)
+		return (-1);
+	return (ret);
 }

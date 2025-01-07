@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 14:33:36 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 12:29:01 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:53:43 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,6 @@
 #  define BUFFER_SIZE 42
 # endif
 
-char	*strjoin(char *s1, char *s2);
-char	*get_next_line(int fd);
+int	        get_next_line(int fd, char **line);
+
 #endif

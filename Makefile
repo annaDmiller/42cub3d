@@ -6,7 +6,7 @@
 #    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/01/07 12:55:17 by okapshai         ###   ########.fr        #
+#    Updated: 2025/01/07 15:47:45 by okapshai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,8 +27,10 @@ SRCS_FILES          := \
                     main.c \
                    	parsing/check_args.c \
                     parsing/parsing.c \
-                    parsing/print_exit_error.c\
-					parsing/check_open.c 
+					parsing/check_open.c\
+					parsing/create_list.c\
+					parsing/check_list_syntax.c\
+					parsing/cleaner.c 
 
 SRCS_LIBFT          := $(wildcard $(LIBFT_DIR)*.c)
 SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))

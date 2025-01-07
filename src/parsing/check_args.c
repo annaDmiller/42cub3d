@@ -6,16 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:02:13 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 12:17:24 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 14:27:51 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-# define WRONGMAP "Wrong map extension\n"
-# define NOMAP "Missing map file\n"
-# define MANYARGS "Too many arguments\n"
-
 
 // Validate the number and type of args passed to the program
 // Return (nothing);
@@ -25,12 +20,12 @@ void	check_argc(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (check_extension(argv[1], ".cub"))
-            print_exit_error(WRONGMAP);
+            print_error("Wrong map extension\n");
 	}
 	else if (argc == 1)
-		print_exit_error(NOMAP);
+		print_error("Missing map file\n");
 	else if (argc > 2)
-		print_exit_error(MANYARGS);
+		print_error("Too many arguments\n");
 }
 
 // Verifies if the given file has the correct .cub extension

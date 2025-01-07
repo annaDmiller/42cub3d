@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 12:42:27 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:43:55 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,44 +26,55 @@
 # include <math.h>
 # include <X11/X.h>
 
+# define RED "\033[1;31m"
+# define GREEN "\033[1;32m"
+# define YELLOW "\033[1;33m"
+# define BLUE "\033[1;34m"
+# define PURPLE "\033[1;35m"
+# define CYAN "\033[1;36m"
+# define RESET "\033[0m"
+
+// Defines possible types for each line in the linked list
+enum	e_type
+{
+	ERROR_TYPE = 0,
+	EMPTY_LINE,
+	TEXTURE_LINE,
+	COLOR_LINE,
+	MAP_LINE,
+	ERROR_LINE,
+};
 
 typedef struct s_data
 {
 	char	**map;
 	int		map_height;
 	int		map_width;
-	char	*north_texture;
-	char	*south_texture;
-	char	*west_texture;
-	char	*east_texture;
-	int		floor_rgb;
-	int		ceiling_rgb;
-	int		player_x;
-	int		player_y;
-	char	player_dir;
-	float	player_dir_radian;
 }          t_data;
-
-
-
-// Linked list for map parsing
-
-typedef struct s_parse
-{
-	char			*line;
-	int				line_size;
-	int				type;
-	struct t_parse	*next;
-}    		 t_parse;
 
 
 
 /*PARSING*/
 
-void	parsing(int argc, char **argv, t_data **data);
+void	parsing(int argc, char **argv/* , t_data **data */);
 void	check_argc(int argc, char **argv);
 int		check_extension(char *filename, char *extension);
-void	print_exit_error(char *message);
 
+void	print_error(char *message);
+void	clean_list(t_list **list, char *line);
+void	clean_list_with_syntax_error(t_list **list, int i, char *line, char *message);
+
+void	create_list(int fd, t_list **list);
+int		set_line_type(char *str);
+int		is_direction_char(char c);
+int		is_color_char(char c);
+
+void	check_open(char *filename, int *fd);
+
+void	check_list_syntax(t_list **list);
+void	check_last_element(t_list **list);
+int		check_directions_syntax(char *str);
+int		check_color_syntax(char *str);
+int		check_map_chars(char *str);
 
 #endif

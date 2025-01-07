@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:57:09 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 13:04:10 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 15:44:01 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,15 @@
 // values and fill data if correct to send to mlx.
 // Return (nothing);
 
-void	parsing(int argc, char **argv, t_data **data)
+void	parsing(int argc, char **argv/*,  t_data **data */)
 {
 	int     fd;
-	t_parse *list;
+	t_list *list;
 
 	fd = 0;
 	list = NULL;
 	check_argc(argc, argv);
     check_open(argv[1], &fd);
+	create_list(fd, &list);
+	check_list_syntax(&list);
 }
