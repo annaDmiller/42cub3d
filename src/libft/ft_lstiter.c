@@ -6,11 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:42:43 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:42:45 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:34:51 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/* #include "libft.h"
 
 void	ft_lstiter(t_list *lst, void (*f)(void *))
 {
@@ -19,4 +19,4 @@ void	ft_lstiter(t_list *lst, void (*f)(void *))
 		(*f)(lst->content);
 		lst = lst->next;
 	}
-}
+} */

@@ -1,0 +1,13 @@
+NO ./textures/wood.xpm
+SO ./textures/purplestone.xpm
+WE ./textures/pillar.xpm
+EA ./textures/wall_2.xpm
+
+F 220,100,0
+C 225,30,0
+
+1110111110111111
+1010000000000001
+1010000100000111
+1010000N00010001
+1000000000010000

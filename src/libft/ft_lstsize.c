@@ -6,11 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:43:21 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:43:23 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:35:11 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/* #include "libft.h"
 
 int	ft_lstsize(t_list *lst)
 {
@@ -23,4 +23,4 @@ int	ft_lstsize(t_list *lst)
 		i++;
 	}
 	return (i);
-}
+} */

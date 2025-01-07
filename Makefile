@@ -6,7 +6,7 @@
 #    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/01/02 18:12:47 by okapshai         ###   ########.fr        #
+#    Updated: 2025/01/07 12:55:17 by okapshai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,9 +24,14 @@ MLX_DIR             := includes/minilibx-linux/
 
 # SRCS VARIABLES
 SRCS_FILES          := \
-                    main.c
-SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))
+                    main.c \
+                   	parsing/check_args.c \
+                    parsing/parsing.c \
+                    parsing/print_exit_error.c\
+					parsing/check_open.c 
+
 SRCS_LIBFT          := $(wildcard $(LIBFT_DIR)*.c)
+SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
 ###############
 # INGREDIENTS #
@@ -80,10 +85,8 @@ $(OBJS_DIR)libft/%.o: $(LIBFT_DIR)%.c
 $(LX):
 	@$(MAKE) -C $(MLX_DIR)
 
--include $(DEPS)
-
 clean:
-	@echo 🧹 $(CYAN)"Removing .o files"$(WHITE)
+	@echo 🧹 $(CYAN)"Cleaning up object files"$(WHITE)
 	$(RM) $(OBJS_DIR)
 	@$(MAKE) -C $(MLX_DIR) clean
 

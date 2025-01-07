@@ -6,11 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/14 17:43:14 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:43:16 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:35:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+/* #include "libft.h"
 
 t_list	*ft_lstnew(void *content)
 {
@@ -22,4 +22,4 @@ t_list	*ft_lstnew(void *content)
 	l->content = content;
 	l->next = NULL;
 	return (l);
-}
+} */

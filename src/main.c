@@ -6,14 +6,17 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 17:50:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/02 18:09:58 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 13:04:02 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include <stdio.h>
+#include "../includes/cub3d.h"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
-	printf("Hello");
-	return (0);
+	t_data *data;
+
+	data = NULL;
+	parsing(argc, argv, &data);
+	return (EXIT_SUCCESS);
 }

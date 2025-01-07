@@ -1,0 +1,14 @@
+EA ./textures/wall_3.xpm
+SO ./textures/wall_2.xpm
+WE ./textures/eagle.xpm
+NO ./textures/wall_4.xpm
+
+F 220,100,0
+C 225,30,0
+
+1111111111111111
+1010000000000001
+1010000100000111
+10100000N0010001
+1000000000010001
+1111111111111111

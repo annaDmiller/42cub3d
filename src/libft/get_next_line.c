@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 14:33:04 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/24 14:42:25 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 12:35:31 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ static size_t	ft_strlen_nl(const char *str)
 	return (i);
 }
 
-char	*ft_strjoin(char *s1, char *s2)
+char	*strjoin(char *s1, char *s2)
 {
 	int		size_concat;
 	char	*concat;
@@ -69,7 +69,7 @@ char	*get_next_line(int fd)
 	flag = 0;
 	while (!flag && (buffer[0] || (read(fd, buffer, BUFFER_SIZE) > 0)))
 	{
-		line = ft_strjoin(line, buffer);
+		line = strjoin(line, buffer);
 		i = 0;
 		j = 0;
 		while (buffer[i])
