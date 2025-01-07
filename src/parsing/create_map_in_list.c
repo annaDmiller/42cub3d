@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_list.c                                      :+:      :+:    :+:   */
+/*   create_map_in_list.c                               :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:07:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 15:46:44 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:35:36 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 // On success creates a linked list where each node contains a line from the file 
 // GNL return (1 = line readed, 0 = EOF, -1 = error)
 
-void	create_list(int fd, t_list **list)
+void	create_map_in_list(int fd, t_list **list)
 {
 	char	*line;
 	t_list	*current_node;
@@ -29,7 +29,7 @@ void	create_list(int fd, t_list **list)
 	{
 		current_node = ft_lstnew(line);
 		if (!current_node)
-			clean_list(list, line);
+			clean_list_gnl(list, line);
 		*list = ft_lstadd_back(list, current_node);
 		gnl_return_value = get_next_line(fd, &line);
 	}
@@ -40,7 +40,7 @@ void	create_list(int fd, t_list **list)
 		free(line);
 	}
 	else
-		clean_list(list, line);
+		clean_list_gnl(list, line);
 }
 
 // Takes a str and set its type

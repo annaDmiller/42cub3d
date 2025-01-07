@@ -1,21 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_list_syntax.c                                :+:      :+:    :+:   */
+/*   check_map_syntax.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 15:52:40 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:07:31 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-
 // Validates the syntax of each line in the list based on its type (ex: map, texture, color).
 
-void	check_list_syntax(t_list **list)
+void	check_map_syntax(t_list **list)
 {
 	t_list	*tmp;
 	int		i;
