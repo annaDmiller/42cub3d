@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:57:09 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:51:49 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:19:42 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 // values and fill data if correct to send to mlx.
 // Return (nothing);
 
-void	parsing(int argc, char **argv/*,  t_data **data */)
+void	parsing(int argc, char **argv,  t_data **data)
 {
 	int     fd;
 	t_list *list;
@@ -29,4 +29,8 @@ void	parsing(int argc, char **argv/*,  t_data **data */)
 	create_map_in_list(fd, &list);
 	check_map_syntax(&list);
 	check_map_duplicates(&list);
+	check_map_empty_lines(&list);
+	check_map_close_fd(fd, list);
+	check_map_is_closed(data); // SEGFAULT i will check at my return
+
 }

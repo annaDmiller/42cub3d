@@ -6,13 +6,14 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:07:31 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:55:46 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-// Validates the syntax of each line in the list based on its type (ex: map, texture, color).
+// Validates the syntax of each line in the list based on its type (ex: map,
+//	texture, color).
 
 void	check_map_syntax(t_list **list)
 {
@@ -26,21 +27,25 @@ void	check_map_syntax(t_list **list)
 	while (tmp)
 	{
 		if (tmp->type == ERROR_LINE)
-			clean_list_with_syntax_error(list, i, tmp->line, "Syntax error in map file\n");
-		else if (tmp->type == TEXTURE_LINE && check_directions_syntax(tmp->line))
-			clean_list_with_syntax_error(list, i, tmp->line, "Syntax error in map file\n");
+			clean_list_with_syntax_error(list, i, tmp->line,
+				"Syntax error in map file\n");
+		else if (tmp->type == TEXTURE_LINE
+			&& check_directions_syntax(tmp->line))
+			clean_list_with_syntax_error(list, i, tmp->line,
+				"Syntax error in map file\n");
 		else if (tmp->type == COLOR_LINE && check_color_syntax(tmp->line))
-			clean_list_with_syntax_error(list, i, tmp->line, "Syntax error in map file\n");
+			clean_list_with_syntax_error(list, i, tmp->line,
+				"Syntax error in map file\n");
 		else if (tmp->type == MAP_LINE && check_map_chars(tmp->line))
-			clean_list_with_syntax_error(list, i, tmp->line, "Map should have only ' 01NSWE' chars\n");
+			clean_list_with_syntax_error(list, i, tmp->line,
+				"Map should have only ' 01NSWE' chars\n");
 		i++;
 		tmp = tmp->next;
 	}
 	check_last_element(list);
 }
 
-
-//Ensures the last element in the linked list is a valid map line
+// Ensures the last element in the linked list is a valid map line
 
 void	check_last_element(t_list **list)
 {
@@ -55,7 +60,8 @@ void	check_last_element(t_list **list)
 		i++;
 	}
 	if (check_map_chars(tmp->line))
-		clean_list_with_syntax_error(list, i, tmp->line, "Last line should be a map line\n");
+		clean_list_with_syntax_error(list, i, tmp->line,
+			"Last line should be a map line\n");
 }
 
 // The function compares the first three chars of str against the directions:
@@ -64,7 +70,7 @@ void	check_last_element(t_list **list)
 
 int	check_directions_syntax(char *str)
 {
-	if (ft_strncmp(str, "NO ", 3) == 0 || ft_strncmp(str, "SO ", 3) == 0 \
+	if (ft_strncmp(str, "NO ", 3) == 0 || ft_strncmp(str, "SO ", 3) == 0
 		|| ft_strncmp(str, "WE ", 3) == 0 || ft_strncmp(str, "EA ", 3) == 0)
 		return (EXIT_SUCCESS);
 	return (EXIT_FAILURE);
@@ -87,17 +93,18 @@ int	check_color_syntax(char *str)
 	return (EXIT_SUCCESS);
 }
 
-// Check if string contains only valid map characters (0, 1, ' ', '\0', 'N', 'S', 'W', 'E')
+// Check if string contains only valid map characters (0, 1, ' ', '\0', 'N',
+//	'S', 'W', 'E')
 // Return (0) if OK, (1) if failed
 
 int	check_map_chars(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != '\0' \
+		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != '\0'
 			&& !is_direction_char(str[i]))
 			return (EXIT_FAILURE);
 		i++;

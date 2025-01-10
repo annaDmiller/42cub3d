@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:02:13 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 14:27:51 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/07 17:55:24 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	check_argc(int argc, char **argv)
 	if (argc == 2)
 	{
 		if (check_extension(argv[1], ".cub"))
-            print_error("Wrong map extension\n");
+			print_error("Wrong map extension\n");
 	}
 	else if (argc == 1)
 		print_error("Missing map file\n");
@@ -34,8 +34,8 @@ void	check_argc(int argc, char **argv)
 
 int	check_extension(char *filename, char *extension)
 {
-	int	len;
-	int	extension_len;
+	int len;
+	int extension_len;
 
 	len = ft_strlen(filename);
 	extension_len = ft_strlen(extension);

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:52:25 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/10 13:12:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,15 +62,19 @@ typedef struct s_data
 
 /*PARSING*/
 
-void		parsing(int argc, char **argv /* , t_data **data */);
+void		parsing(int argc, char **argv, t_data **data);
 void		check_argc(int argc, char **argv);
 int			check_extension(char *filename, char *extension);
 
 void		print_error(char *message);
 void		clean_list_gnl(t_list **list, char *line);
-
 void		clean_list_with_syntax_error(t_list **list, int i, char *line,
 				char *message);
+void	clean_list(t_list **list, char *message);
+void	clean_list_with_syntax_error(t_list **list, int i, char *line, char *message);
+void	clean_data_map_exit(t_data **data, int i, char *msg);
+void	clean_data(t_data **data);
+void	free_array(char **arr);
 
 void		create_map_in_list(int fd, t_list **list);
 int			set_line_type(char *str);
@@ -91,5 +95,15 @@ void		check_directions_duplicates(t_list **list, int *duplicates,
 				char *str, int i);
 void		check_color_duplicates(t_list **list, int *dup, char *str, int i);
 void		check_missing_lines(t_list **list, int *dup);
+
+void		check_map_empty_lines(t_list **list);
+
+int			check_map_close_fd(int fd, t_list *list);
+
+void		check_map_is_closed(t_data **data);
+int			check_close_chars(char *str);
+void		check_first_last_char(t_data **data);
+void		check_inside_map(t_data **data);
+void		check_direction_side(t_data **data, int x, int y, int direction);
 
 #endif
