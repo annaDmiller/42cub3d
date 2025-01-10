@@ -5,18 +5,14 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:41:47 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:41:49 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:47:05 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 15:47:07 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	ft_isdigit(int p)
+int	ft_isdigit(char c)
 {
-	if (p >= 48 && p <= 57)
-	{
-		return (1);
-	}
-	return (0);
+	return (c >= '0' && c <= '9');
 }

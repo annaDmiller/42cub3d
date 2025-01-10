@@ -5,107 +5,94 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:44:38 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/16 14:08:37 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:49:23 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:08:39 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-static size_t	ft_string_copy(char *dest, char *src, size_t size)
+static int	ft_count_words(char *str, char c)
 {
-	size_t	i;
-	size_t	count;
+	int	wcount;
 
-	i = 0;
-	count = 0;
-	while (src[count])
-		count++;
-	if (size < 1)
-		return (count);
-	while (src[i] && i < size)
-	{
-		dest[i] = src[i];
-		i++;
-	}
-	dest[i] = '\0';
-	return (count);
-}
-
-static int	ft_count_substrings(const char *str, char c)
-{
-	int	count;
-	int	x;
-
-	count = 0;
-	x = 0;
+	wcount = 0;
 	while (*str)
 	{
-		if (*str != c && x == 0)
-		{
-			x = 1;
-			count++;
-		}
-		else if (*str == c)
-			x = 0;
-	str++;
+		if (*str != c && (*(str + 1) == '\0' || *(str + 1) == c))
+			wcount++;
+		str++;
 	}
-	return (count);
+	return (wcount);
 }
 
-static char	*ft_copy_substring(const char *start, int length)
+static int	ft_wordlen(char *str, char c)
 {
-	char	*substr;
+	int	wlen;
 
-	substr = (char *)malloc((length + 1) * sizeof(char));
-	if (!substr)
-		return (NULL);
-	ft_string_copy(substr, (char *)start, length);
-	return (substr);
+	wlen = 0;
+	while (str[wlen] && str[wlen] != c)
+		wlen++;
+	return (wlen);
 }
 
-static int	ft_free_result(char **result, int count)
+static void	*ft_free(char **words, int wcount)
 {
-	if (result[count] == NULL)
+	while (wcount--)
+		free(words[wcount]);
+	free(words);
+	return (NULL);
+}
+
+static char	**fill(char *str, int wcount, char c, char **words)
+{
+	int	i;
+	int	j;
+	int	wlen;
+
+	i = 0;
+	while (i < wcount)
 	{
-		count--;
-		while (count > 0)
-		{
-			free(result[count]);
-			count--;
-		}
-		free(result[0]);
-		free(result);
-		return (1);
+		while (*str == c)
+			str++;
+		wlen = ft_wordlen(str, c);
+		words[i] = (char *)malloc(sizeof(char) * (wlen + 1));
+		if (!words[i])
+			return (ft_free(words, i));
+		j = 0;
+		while (j < wlen)
+			words[i][j++] = *str++;
+		words[i][j] = '\0';
+		i++;
 	}
-	return (0);
+	words[i] = NULL;
+	return (words);
 }
 
-char	**ft_split(char const *s, char c)
+char	**ft_split(t_data **data, t_list **list, char *str, char c)
 {
-	char const		*start;
-	char			**result;
-	int				index;
+	char	**words;
+	int		wcount;
 
-	index = 0;
-	result = (char **)malloc((ft_count_substrings(s, c) + 1) * sizeof(char *));
-	if (!result)
+	if (!str)
 		return (NULL);
-	while (*s)
+	wcount = ft_count_words(str, c);
+	if (wcount != 3)
 	{
-		if (*s != c)
+		if (wcount < 3)
 		{
-			start = s;
-			while (*s && *s != c)
-				s++;
-			result[index] = ft_copy_substring(start, s - start);
-			if (ft_free_result(result, index))
-				return (NULL);
-			index++;
+			free(str);
+			clean_all_exit(data, list, "Missing RGB value, 3 needed\n");
 		}
-		else
-			s++;
+		if (wcount > 3)
+		{
+			free(str);
+			clean_all_exit(data, list, "Too much RGB values, 3 needed\n");
+		}
 	}
-	result[index] = NULL;
-	return (result);
+	words = (char **)malloc(sizeof(char *) * (wcount + 1));
+	if (!words)
+		return (NULL);
+	words = fill(str, wcount, c, words);
+	return (words);
 }

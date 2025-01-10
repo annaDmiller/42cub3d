@@ -5,22 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:44:02 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:44:05 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:49:02 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:08:33 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-void	*ft_memset(void *pointer, int value, size_t count)
+void	*ft_memset(void *b, int c, int len)
 {
-	size_t	i;
-
-	i = 0;
-	while (i < count)
-	{
-		((unsigned char *)pointer)[i] = (unsigned char) value;
-		i++;
-	}
-	return (pointer);
+	while (len--)
+		((unsigned char *)b)[len] = (unsigned char)c;
+	return (b);
 }

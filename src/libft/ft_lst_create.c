@@ -1,24 +1,27 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_lst_create.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:44:16 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:44:18 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:47:41 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:05:24 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-void	ft_putendl_fd(char const *s, int fd)
+t_list	*ft_lst_create(char *line)
 {
-	size_t	i;
+	t_list	*elem;
 
-	i = 0;
-	while (s[i])
-		i++;
-	write(fd, s, i);
-	write(fd, "\n", 1);
+	elem = (t_list *)malloc(sizeof(t_list));
+	if (!elem)
+		return (NULL);
+	elem->line = line;
+	elem->line_size = ft_strlen(elem->line);
+	elem->type = set_line_type(elem->line);
+	elem->next = NULL;
+	return (elem);
 }

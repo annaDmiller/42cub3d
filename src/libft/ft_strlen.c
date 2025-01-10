@@ -5,19 +5,19 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:46:16 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:46:18 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:49:59 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:08:48 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-size_t	ft_strlen(const char *str)
+int	ft_strlen(char *str)
 {
-	size_t	i;
+	int	i;
 
 	i = 0;
-	while (str[i] != '\0')
+	while (str[i])
 		i++;
 	return (i);
 }

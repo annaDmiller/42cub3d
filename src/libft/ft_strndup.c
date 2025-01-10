@@ -1,20 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstdelone.c                                     :+:      :+:    :+:   */
+/*   ft_strndup.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:42:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 12:34:46 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:50:21 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:08:54 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-/* #include "libft.h"
+#include "cub3d.h"
 
-void	ft_lstdelone(t_list *lst, void (*del)(void*))
+char	*ft_strndup(char *str, int n)
 {
-	del(lst->content);
-	free(lst);
-	lst = NULL;
-} */
+	char	*new_str;
+	int		i;
+
+	i = 0;
+	new_str = (char *)malloc(sizeof(char) * (n + 1));
+	if (!new_str)
+		return (NULL);
+	while (i < n)
+	{
+		new_str[i] = str[i];
+		i++;
+	}
+	new_str[i] = '\0';
+	return (new_str);
+}

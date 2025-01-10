@@ -5,22 +5,18 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:45:05 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:45:10 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:49:34 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:08:42 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-char	*ft_strchr(const char *string, int searchedChar )
+char	*ft_strchr(char *str, char c)
 {
-	char	*str;
-
-	str = (char *)string;
-	while (*str != searchedChar && *str != 0)
+	while (*str && *str != c)
 		str++;
-	if (*str == searchedChar)
+	if (*str == c)
 		return (str);
-	else
-		return (NULL);
+	return (NULL);
 }

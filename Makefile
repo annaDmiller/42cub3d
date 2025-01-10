@@ -6,7 +6,7 @@
 #    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/01/10 13:09:37 by okapshai         ###   ########.fr        #
+#    Updated: 2025/01/10 15:43:59 by okapshai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -34,7 +34,8 @@ SRCS_FILES          := \
 					parsing/check_map_duplicates.c\
 					parsing/check_map_empty_lines.c\
 					parsing/check_map_close_fd.c\
-					parsing/check_map_is_closed.c  
+					parsing/check_map_is_closed.c\
+					parsing/init_data.c  
 
 SRCS_LIBFT          := $(wildcard $(LIBFT_DIR)*.c)
 SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))
@@ -45,7 +46,6 @@ SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))
 
 # INC
 INC_DIR             := includes/
-LIBFT_INC           := $(LIBFT_DIR)
 MLX_INC             := $(MLX_DIR)
 
 # OBJS

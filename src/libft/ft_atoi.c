@@ -5,42 +5,32 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:40:44 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:40:49 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:46:04 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:08:09 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-int	ft_atoi(const char *str)
+int	ft_atoi(char *str)
 {
-	int	i;
-	int	s;
-	int	res;
+	int	result;
+	int	sign;
 
-	i = 0;
-	s = 1;
-	res = 0;
-	while (str[i] == ' ' || str[i] == '\n' || str[i] == '\t'
-		|| str[i] == '\v' || str[i] == '\f' || str[i] == '\r')
-		i++;
-	if (str[i] == '-' || str[i] == '+')
+	result = 0;
+	sign = 1;
+	while (*str == ' ')
+		str++;
+	while (*str == '+' || *str == '-')
 	{
-		if (str[i] == '-')
-			s = -1;
-		i++;
+		if (*str == '-')
+			sign *= -1;
+		str++;
 	}
-	while (str[i] >= '0' && str[i] <= '9')
+	while (ft_isdigit(*str))
 	{
-		res = (res * 10) + (str[i] - '0');
-		i++;
+		result = result * 10 + (*str - '0');
+		str++;
 	}
-	return (res * s);
+	return (sign * result);
 }
-
-/*int main()
-{
-	int p = ft_atoi("    -----+134587adsfgr");
-	printf("%d \n", p);
-	return 0;
-}*/

@@ -1,37 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putnbr_fd.c                                     :+:      :+:    :+:   */
+/*   ft_lst_clear.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:44:23 by okapshai          #+#    #+#             */
-/*   Updated: 2024/08/14 17:44:25 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:47:28 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:07:58 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
+#include "cub3d.h"
 
-static void	print_nb(long nb, int fd)
+void	ft_lst_clear(t_list **lst)
 {
-	if (nb / 10)
-	{
-		print_nb(nb / 10, fd);
-		print_nb(nb % 10, fd);
-	}
-	else
-		ft_putchar_fd(nb + '0', fd);
-}
+	t_list	*ptr;
+	t_list	*next;
 
-void	ft_putnbr_fd(int n, int fd)
-{
-	long	nb;
-
-	nb = n;
-	if (nb < 0)
+	ptr = *lst;
+	while (ptr)
 	{
-		write(fd, "-", 1);
-		nb = -nb;
+		next = ptr->next;
+		free(ptr->line);
+		free(ptr);
+		ptr = next;
 	}
-	print_nb(nb, fd);
 }

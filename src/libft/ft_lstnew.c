@@ -5,13 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/14 17:43:14 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 15:48:50 by okapshai         ###   ########.fr       */
+/*   Created: 2025/01/10 15:57:46 by okapshai          #+#    #+#             */
+/*   Updated: 2025/01/10 16:08:30 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "libft.h"
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
 t_list	*ft_lstnew(char *line)
 {

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 12:14:37 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/10 12:14:50 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/10 16:09:09 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@
 
 int	check_map_close_fd(int fd, t_list *list)
 {
-	int	return_value;
+	int return_value;
 
 	return_value = close(fd);
 	if (return_value == -1)
