@@ -33,5 +33,5 @@ void	parsing(int argc, char **argv,  t_data **data)
 	check_map_close_fd(fd, list);
 	initialize_data(data, &list);
 	check_map_is_closed(data); // SEGFAULT i will check at my return
-
+	check_text_extensions(data);
 }

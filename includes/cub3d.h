@@ -13,7 +13,7 @@
 #ifndef CUB3D_H
 # define CUB3D_H
 
-# include "../includes/minilibx-linux/mlx.h"
+# include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 #include <fcntl.h>
 # include <stdio.h>
@@ -64,6 +64,23 @@ typedef struct s_list
 	struct s_list	*next;
 } 			t_list;
 
+typedef struct s_img
+{
+	void	*img;
+	int		height;
+	int		width;
+}			t_img;
+
+typedef struct s_mlx
+{
+	void	*mlx;
+	void	*win;
+	t_img	*n_text;
+	t_img	*s_text;
+	t_img	*w_text;
+	t_img	*e_text;
+}			t_mlx;
+
 typedef struct s_data
 {
 	char	**map;
@@ -78,6 +95,7 @@ typedef struct s_data
 	int		player_position_x;
 	int		player_position_y;
 	char	player_direction;
+	t_mlx	*mlx;
 }			t_data;
 
 /*PARSING*/
@@ -139,6 +157,8 @@ int			check_rgb_syntax(char *str);
 void		check_value_limits(t_data **data, t_list **list, char **array,
 				char **str);
 int	count_digits(char *str);
+
+void    check_text_extensions(t_data **data);
 
 /*LIBFT*/
 
