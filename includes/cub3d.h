@@ -15,10 +15,12 @@
 
 # include "minilibx-linux/mlx.h"
 # include <X11/X.h>
-#include <fcntl.h>
+# include <fcntl.h>
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# define __USE_XOPEN
+# include <math.h>
 
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
@@ -27,6 +29,11 @@
 # define PURPLE "\033[1;35m"
 # define CYAN "\033[1;36m"
 # define RESET "\033[0m"
+
+# define SCREEN_WIDTH 1900
+# define SCREEN_HIGHT 1000
+# define PLAYER_SIGHT 60
+# define CELL_SIZE 30
 
 // Defines possible types for each line in the linked list
 enum		e_type
@@ -71,15 +78,38 @@ typedef struct s_img
 	int		width;
 }			t_img;
 
-typedef struct s_mlx
+typedef struct s_texture
 {
-	void	*mlx;
-	void	*win;
 	t_img	*n_text;
 	t_img	*s_text;
 	t_img	*w_text;
-	t_img	*e_text;
-}			t_mlx;
+	t_img	*e_text;	
+}			t_texture;
+
+typedef struct s_ray
+{
+	double	angle;
+	float	dist;
+}			t_ray;
+
+
+typedef struct s_mlx
+{
+	void		*mlx;
+	void		*win;
+	t_player	*player;
+	t_ray		*ray;
+	t_data		*map;
+}				t_mlx;
+
+typedef struct s_player
+{
+	int		pos_x_pix;
+	int		pos_y_pix;
+	double	angle;
+	double	sight_rad;
+}			t_player;
+
 
 typedef struct s_data
 {
@@ -95,7 +125,6 @@ typedef struct s_data
 	int		player_position_x;
 	int		player_position_y;
 	char	player_direction;
-	t_mlx	*mlx;
 }			t_data;
 
 /*PARSING*/
@@ -180,4 +209,8 @@ char		*ft_strndup(char *str, int n);
 int			get_next_line(int fd, char **line);
 int	ft_putstr_fd(char *s, int fd);
 
+
+// RAY_CASTING
+double	norming_angle(float angle);
+void    ray_casting(t_mlx *mlx);
 #endif
