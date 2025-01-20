@@ -6,13 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:42:41 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/20 12:55:34 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:07:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/cub3d.h"
-
-//UNDER CONSTRUCTION
 
 void	initialize_data(t_data **data, t_list **list)
 {
@@ -25,7 +23,9 @@ void	initialize_data(t_data **data, t_list **list)
 	fill_colors(data, list, &(*data)->ceiling_colors, "C ");
 	get_map_size(data, list);
 	init_empty_map(data, list);
+	fill_map(data, list);
 }
+
 
 // Initializes the t_data structure
 void	init_data(t_data **data, t_list **list)
@@ -42,9 +42,6 @@ void	init_data(t_data **data, t_list **list)
 	(*data)->south_texture = NULL;
 	(*data)->west_texture = NULL;
 	(*data)->east_texture = NULL;
-	(*data)->player_position_x = 0;
-	(*data)->player_position_y = 0;
-	(*data)->player_direction = '\0';
 }
 
 // Finds a matching line, extracts the texture path (after removing the prefix) and assigns it to *dest

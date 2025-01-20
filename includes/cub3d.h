@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/20 12:52:53 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:08:38 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,14 +92,10 @@ typedef struct s_data
 	char			*south_texture;
 	char			*west_texture;
 	char			*east_texture;
-	int				player_position_x;
-	int				player_position_y;
-	char			player_direction;
 	t_mlx			*mlx;
 }					t_data;
 
 /*PARSING*/
-
 void				parsing(int argc, char **argv, t_data **data);
 void				check_argc(int argc, char **argv);
 int					check_extension(char *filename, char *extension);
@@ -163,8 +159,10 @@ void				check_value_limits(t_data **data, t_list **list,
 int					count_digits(char *str);
 
 void				check_texture_extensions(t_data **data);
-void	get_map_size(t_data **data, t_list **list);
-void	init_empty_map(t_data **data, t_list **list);
+void				get_map_size(t_data **data, t_list **list);
+void				init_empty_map(t_data **data, t_list **list);
+void				fill_map(t_data **data, t_list **list);
+char				*copy_content(char *dest, char *src);
 
 /*LIBFT*/
 

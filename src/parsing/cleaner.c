@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:31:52 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/10 16:10:36 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/20 15:07:07 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,17 +56,21 @@ void	clean_data_map_exit(t_data **data, int i, char *msg)
 	j = 0;
 	write(2, "Error\n", 6);
 	printf("%s", msg);
-	while (j < (*data)->map_height)
+
+	if (i != 0)
 	{
-		if ((j == i - 1) && (i - 1 > 0))
-			printf("[%d] " YELLOW "[%s]" RESET "\n", j, (*data)->map[i - 1]);
-		else if (j == i)
-			printf("[%d] " RED "[%s]" RESET "\n", j, (*data)->map[i]);
-		else if ((j == i + 1) && (i + 1 < (*data)->map_height))
-			printf("[%d] " YELLOW "[%s]" RESET "\n", j, (*data)->map[i + 1]);
-		else
-			printf("[%d] [%s]\n", j, (*data)->map[j]);
-		j++;
+		while (j < (*data)->map_height)
+		{
+			if ((j == i - 1) && (i - 1 > 0))
+				printf("[%d] " YELLOW "[%s]" RESET "\n", j, (*data)->map[i - 1]);
+			else if (j == i)
+				printf("[%d] " RED "[%s]" RESET "\n", j, (*data)->map[i]);
+			else if ((j == i + 1) && (i + 1 < (*data)->map_height))
+				printf("[%d] " YELLOW "[%s]" RESET "\n", j, (*data)->map[i + 1]);
+			else
+				printf("[%d] [%s]\n", j, (*data)->map[j]);
+			j++;
+		}
 	}
 	clean_data(data);
 	exit(EXIT_FAILURE);
@@ -106,3 +110,4 @@ void	clean_all_exit(t_data **data, t_list **list, char *msg)
 		clean_data(data);
 	print_error(msg);
 }
+
