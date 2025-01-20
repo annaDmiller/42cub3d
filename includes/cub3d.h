@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/20 12:00:09 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:52:53 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,6 +164,7 @@ int					count_digits(char *str);
 
 void				check_texture_extensions(t_data **data);
 void	get_map_size(t_data **data, t_list **list);
+void	init_empty_map(t_data **data, t_list **list);
 
 /*LIBFT*/
 

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:42:41 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/20 11:59:59 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/20 12:55:34 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	initialize_data(t_data **data, t_list **list)
 	fill_colors(data, list, &(*data)->floor_colors, "F ");
 	fill_colors(data, list, &(*data)->ceiling_colors, "C ");
 	get_map_size(data, list);
+	init_empty_map(data, list);
 }
 
 // Initializes the t_data structure
