@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:31:52 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/20 15:07:07 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:00:13 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 
 void	print_error(char *message)
 {
+	write(2, "Error\n", 6);
 	ft_putstr_fd(message, STDERR_FILENO);
 	exit(EXIT_FAILURE);
 }

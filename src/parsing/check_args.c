@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:02:13 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:55:24 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/21 12:01:38 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ void	check_argc(int argc, char **argv)
 		print_error("Too many arguments\n");
 }
 
-// Verifies if the given file has the correct .cub extension
+// Verifies if the given file has the correct .cub/.xpm extension
 // Return: (0) if the extension matches
 //         (1) if the extension does not match
 
