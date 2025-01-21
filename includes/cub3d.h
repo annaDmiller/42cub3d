@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/20 15:08:38 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:50:11 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,9 @@ typedef struct s_data
 	char			*south_texture;
 	char			*west_texture;
 	char			*east_texture;
+	int				player_x;
+	int				player_y;
+	char			player_direction;
 	t_mlx			*mlx;
 }					t_data;
 
@@ -163,6 +166,8 @@ void				get_map_size(t_data **data, t_list **list);
 void				init_empty_map(t_data **data, t_list **list);
 void				fill_map(t_data **data, t_list **list);
 char				*copy_content(char *dest, char *src);
+void				get_player_position(t_data **data);
+int					direction_char(char c);
 
 /*LIBFT*/
 

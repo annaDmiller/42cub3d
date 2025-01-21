@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:42:41 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/20 15:07:47 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/21 11:42:08 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ void	initialize_data(t_data **data, t_list **list)
 	get_map_size(data, list);
 	init_empty_map(data, list);
 	fill_map(data, list);
+	get_player_position(data);
 }
 
 

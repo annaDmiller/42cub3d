@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:02:42 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/10 13:10:46 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/20 17:25:11 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,6 @@ int	check_close_chars(char *str)
 }
 
 
-
 // Check the first and last characters of each row are enclosed properly
 
 void	check_first_last_char(t_data **data)
@@ -69,6 +68,7 @@ void	check_first_last_char(t_data **data)
 		y++;
 	}
 }
+
 //Check the inner map structure, ensuring no 0 (open space) is adjacent to an invalid character (or out-of-bounds)
 
 void	check_inside_map(t_data **data)
