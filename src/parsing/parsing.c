@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 11:57:09 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/20 15:09:19 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:54:25 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,8 @@ void	parsing(int argc, char **argv,  t_data **data)
 	check_map_empty_lines(&list);
 	check_map_close_fd(fd, list);
 	initialize_data(data, &list);
-	check_texture_extensions(data);
+	check_texture_extension(data);
+	check_texture_open(data);
 	check_map_is_closed(data);
 	ft_lst_clear(&list);
 

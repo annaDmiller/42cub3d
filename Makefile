@@ -6,7 +6,7 @@
 #    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/01/21 11:50:35 by okapshai         ###   ########.fr        #
+#    Updated: 2025/01/21 15:53:01 by okapshai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,11 +36,12 @@ SRCS_FILES          := \
 					parsing/check_map_close_fd.c\
 					parsing/check_map_is_closed.c\
 					parsing/init_data.c\
-					parsing/check_texture_extensions.c\
+					parsing/check_texture_extension.c\
 					parsing/get_map_size.c\
 					parsing/init_empty_map.c\
 					parsing/fill_map.c\
-					parsing/get_player_position.c 
+					parsing/get_player_position.c\
+					parsing/check_texture_open.c
 
 SRCS_LIBFT          := $(wildcard $(LIBFT_DIR)*.c)
 SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))

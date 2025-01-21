@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/21 11:50:11 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/21 15:59:55 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -161,13 +161,23 @@ void				check_value_limits(t_data **data, t_list **list,
 						char **array, char **str);
 int					count_digits(char *str);
 
-void				check_texture_extensions(t_data **data);
+void				check_texture_extension(t_data **data);
 void				get_map_size(t_data **data, t_list **list);
 void				init_empty_map(t_data **data, t_list **list);
 void				fill_map(t_data **data, t_list **list);
 char				*copy_content(char *dest, char *src);
 void				get_player_position(t_data **data);
 int					direction_char(char c);
+void				check_texture_open(t_data **data);
+void				check_if_texture_path_is_directory(t_data **data, int *fd,
+						void *mlx);
+void				close_texture_files(t_data **data, int *fd);
+void				close_all_textures(int *fd);
+int					check_texture_size(char *path, void *mlx);
+void				clean_mlx_data_fd_exit(t_data **data, void *mlx, int *fd,
+						char *msg);
+void				close_error_texture_file(t_data **data, int *fd);
+void				open_textures(t_data **data, int *fd, void *mlx);
 
 /*LIBFT*/
 
