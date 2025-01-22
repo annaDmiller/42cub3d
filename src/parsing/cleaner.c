@@ -77,6 +77,8 @@ void	clean_data_map_exit(t_data **data, int i, char *msg)
 	exit(EXIT_FAILURE);
 }
 
+// Cleans up memory of the data structure
+
 void	clean_data(t_data **data)
 {
 	if (!*data)
@@ -89,6 +91,8 @@ void	clean_data(t_data **data)
 	free((*data)->east_texture);
 	free(*data);
 }
+
+// Free the array of strings
 
 void	free_array(char **arr)
 {
@@ -103,6 +107,8 @@ void	free_array(char **arr)
 	free(arr);
 }
 
+// Cleans up all memory and exits the program
+
 void	clean_all_exit(t_data **data, t_list **list, char *msg)
 {
 	if (*list)
@@ -112,3 +118,11 @@ void	clean_all_exit(t_data **data, t_list **list, char *msg)
 	print_error(msg);
 }
 
+// Destroys the mlx display and closes all textures
+
+void	clean_mlx_data_fd_exit(t_data **data, void *mlx, int *fd, char *msg)
+{
+	mlx_destroy_display(mlx);
+	close_all_textures(fd);
+	clean_data_map_exit(data, 0, msg);
+} 

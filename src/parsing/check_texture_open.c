@@ -38,7 +38,7 @@ void	check_texture_open(t_data **data)
 	mlx_destroy_display(mlx);
 }
 
-// Opens each texture path in directory-check mode (O_DIRECTORY flag).
+// Opens each texture path in directory-check mode
 // If any path is a directory, it triggers an error and exits.
 
 void	check_if_texture_path_is_directory(t_data **data, int *fd, void *mlx)
@@ -115,12 +115,8 @@ int	check_texture_size(char *path, void *mlx)
 	return (EXIT_SUCCESS);
 }
 
-void	clean_mlx_data_fd_exit(t_data **data, void *mlx, int *fd, char *msg)
-{
-	mlx_destroy_display(mlx);
-	close_all_textures(fd);
-	clean_data_map_exit(data, 0, msg);
-} 
+// Opens each texture
+// If error in oppening, triggers an error and exits.
 
 void	open_textures(t_data **data, int *fd, void *mlx)
 {
@@ -134,6 +130,8 @@ void	open_textures(t_data **data, int *fd, void *mlx)
 		close_error_texture_file(data, fd);
 	}
 }
+
+// Close all textures and print an error
 
 void	close_error_texture_file(t_data **data, int *fd)
 {
