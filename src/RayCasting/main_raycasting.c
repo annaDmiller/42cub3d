@@ -12,8 +12,19 @@ void    ray_casting(t_mlx *mlx)
     {
         inter_hor = find_horiz_intersection(mlx, norming_angle(mlx->ray->angle));
         inter_vert = find_vert_intersection(mlx, norming_angle(mlx->ray->angle));
-        //draw_line(mlx, screen_line);
+        if (inter_vert <= inter_hor)
+        {
+            mlx->ray->dist = inter_vert;
+            mlx->ray->hit_vert_wall = 1;
+        }
+        else
+        {
+            mlx->ray->dist = inter_hor;
+            mlx->ray->hit_vert_wall = 0;
+        }
+        draw_line(mlx, screen_line);
         screen_line++;
         mlx->ray->angle += (mlx->player->sight_rad / SCREEN_WIDTH);
     }
+    return ;
 }

@@ -90,6 +90,7 @@ typedef struct s_ray
 {
 	double	angle;
 	float	dist;
+	int		hit_vert_wall;
 }			t_ray;
 
 
@@ -211,6 +212,7 @@ int	ft_putstr_fd(char *s, int fd);
 
 
 // RAY_CASTING
-double	norming_angle(float angle);
+double  norming_angle(double angle);
 void    ray_casting(t_mlx *mlx);
+void    draw_line(t_mlx *mlx, int screen_line);
 #endif
