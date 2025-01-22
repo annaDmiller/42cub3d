@@ -19,6 +19,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <unistd.h>
+# include <string.h>
 
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
@@ -198,5 +199,6 @@ int					ft_strncmp(char *s1, char *s2, unsigned int n);
 char				*ft_strndup(char *str, int n);
 int					get_next_line(int fd, char **line);
 int					ft_putstr_fd(char *s, int fd);
+char	*ft_strtrim(char *str, char *set);
 
 #endif

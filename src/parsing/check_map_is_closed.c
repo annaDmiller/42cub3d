@@ -20,9 +20,9 @@
 void	check_map_is_closed(t_data **data)
 {
 	if (check_close_chars((*data)->map[0]))
-		clean_data_map_exit(data, 0, "check_close_chars_Map should be closed by char 1\n");
+		clean_data_map_exit(data, 0, "Top: Map should be closed by char 1\n");
 	if (check_close_chars((*data)->map[(*data)->map_height - 1]))
-		clean_data_map_exit(data, ((*data)->map_height - 1), "check_close_chars_2_Map should be closed by char 1\n");
+		clean_data_map_exit(data, ((*data)->map_height - 1), "Bottom: Map should be closed by char 1\n");
 	check_first_last_char(data);
 	check_inside_map(data);
 }
@@ -64,7 +64,7 @@ void	check_first_last_char(t_data **data)
 			(map[y][0] == 'S' || map[y][width - 1] == 'S') || \
 			(map[y][0] == 'E' || map[y][width - 1] == 'E') || \
 			(map[y][0] == 'W' || map[y][width - 1] == 'W'))
-			clean_data_map_exit(data, y, "check_first_last_char_Map should be closed by char 1\n");
+			clean_data_map_exit(data, y, "Map should be closed by char 1\n");
 		y++;
 	}
 }
@@ -101,11 +101,11 @@ void	check_inside_map(t_data **data)
 void	check_direction_side(t_data **data, int x, int y, int direction)
 {
 	if (direction == NORTH && (*data)->map[y - 1][x] == ' ')
-		clean_data_map_exit(data, y, "check_direction_side0_Map should be closed by char 1\n");
+		clean_data_map_exit(data, y, "Map should be closed by char 1\n");
 	if (direction == SOUTH && (*data)->map[y + 1][x] == ' ')
-		clean_data_map_exit(data, y, "check_direction_side1_Map should be closed by char 1\n");
+		clean_data_map_exit(data, y, "Map should be closed by char 1\n");
 	if (direction == WEST && (*data)->map[y][x - 1] == ' ')
-		clean_data_map_exit(data, y, "check_direction_side2_Map should be closed by char 1\n");
+		clean_data_map_exit(data, y, "Map should be closed by char 1\n");
 	if (direction == EAST && (*data)->map[y][x + 1] == ' ' )
-		clean_data_map_exit(data, y, "check_direction_side3_Map should be closed by char 1\n");
+		clean_data_map_exit(data, y, "Map should be closed by char 1\n");
 }

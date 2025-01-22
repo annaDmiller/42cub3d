@@ -41,9 +41,9 @@ void	get_player_position(t_data **data)
 		y++;
 	}
 	if (player_count == 0)
-        clean_data_map_exit(data, 0, "No player position found in the map.\n");
+        clean_data_map_exit(data, 0, "No player position found in the map\n");
 	if (player_count > 1)
-        clean_data_map_exit(data, 0, "Multiple player positions found in the map.\n");
+        clean_data_map_exit(data, 0, "Multiple player positions found in the map\n");
     }
 
 

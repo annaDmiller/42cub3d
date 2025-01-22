@@ -27,13 +27,13 @@ void	check_texture_open(t_data **data)
 	set_tab_with_zero(fd, 4, 0);
 	open_textures(data, fd, mlx);
 	if (check_texture_size((*data)->north_texture, mlx))
-		clean_mlx_data_fd_exit(data, mlx, fd, "North Texture sie is not 64 x 64\n");
+		clean_mlx_data_fd_exit(data, mlx, fd, "North texture size is not 64 x 64\n");
 	if (check_texture_size((*data)->south_texture, mlx))
-		clean_mlx_data_fd_exit(data, mlx, fd, "South Texture sie is not 64 x 64\n");
+		clean_mlx_data_fd_exit(data, mlx, fd, "South texture size is not 64 x 64\n");
 	if (check_texture_size((*data)->west_texture, mlx))
-		clean_mlx_data_fd_exit(data, mlx, fd, "West Texture sie is not 64 x 64\n");
+		clean_mlx_data_fd_exit(data, mlx, fd, "West texture size is not 64 x 64\n");
 	if (check_texture_size((*data)->east_texture, mlx))
-		clean_mlx_data_fd_exit(data, mlx, fd, "East Texture sie is not 64 x 64\n");
+		clean_mlx_data_fd_exit(data, mlx, fd, "East texture size is not 64 x 64\n");
 	close_all_textures(fd);
 	mlx_destroy_display(mlx);
 }

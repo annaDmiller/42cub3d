@@ -179,19 +179,57 @@ int	create_trgb_value(int t, int r, int g, int b)
 	return (t << 24 | r << 16 | g << 8 | b);
 }
 
+// Helper function to remove spaces and tabs from a string
+
+char	*remove_spaces_and_tabs(char *str)
+{
+    char	*result;
+    int		i;
+    int		j;
+
+    if (!str)
+        return (NULL);
+
+    result = (char *)malloc(strlen(str) + 1);
+    if (!result)
+        return (NULL);
+
+    i = 0;
+    j = 0;
+    while (str[i])
+    {
+        if (str[i] != ' ' && str[i] != '\t')
+        {
+            result[j] = str[i];
+            j++;
+        }
+        i++;
+    }
+    result[j] = '\0';
+    return (result);
+}
+
 // Checks if the RGB string is in a valid format (no spaces in the RGB line)
 
-int check_rgb_syntax(char *str)
+int	check_rgb_syntax(char *str)
 {
-	int		i;
+    int		i;
+    char	*cleaned_str;
 
-	i = 0;
-	while (!ft_isdigit(str[i]))
-		++i;
-	str += i;
-	if (ft_strchr(str, ' ') != 0)
-		return (1);
-	return (0);
+    cleaned_str = remove_spaces_and_tabs(str);
+    if (!cleaned_str)
+        return (1);
+    i = 0;
+    while (!ft_isdigit(cleaned_str[i]))
+        ++i;
+    cleaned_str += i;
+    if (ft_strchr(cleaned_str, ' ') != 0)
+    {
+        free(cleaned_str);
+        return (1);
+    }
+    free(cleaned_str);
+    return (0);
 }
 
 // This function checks if the RGB values are within the range (0–255) and properly formatted

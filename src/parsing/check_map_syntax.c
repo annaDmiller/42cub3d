@@ -32,13 +32,13 @@ void	check_map_syntax(t_list **list)
 		else if (tmp->type == TEXTURE_LINE
 			&& check_directions_syntax(tmp->line))
 			clean_list_with_syntax_error(list, i, tmp->line,
-				"Syntax error in map file\n");
+				"Syntax error in texture line\n");
 		else if (tmp->type == COLOR_LINE && check_color_syntax(tmp->line))
 			clean_list_with_syntax_error(list, i, tmp->line,
-				"Syntax error in map file\n");
+				"Syntax error in color line\n");
 		else if (tmp->type == MAP_LINE && check_map_chars(tmp->line))
 			clean_list_with_syntax_error(list, i, tmp->line,
-				"Map should have only ' 01NSWE' chars\n");
+				"Map should have only '01NSWE' chars inside the map\n");
 		i++;
 		tmp = tmp->next;
 	}
@@ -81,33 +81,46 @@ int	check_directions_syntax(char *str)
 
 int	check_color_syntax(char *str)
 {
-	if ((ft_strncmp(str, "F ", 2) != 0) && (ft_strncmp(str, "C ", 2) != 0))
-		return (EXIT_FAILURE);
-	str++;
-	while (*str)
-	{
-		if (!ft_isdigit(*str) && *str != ' ' && *str != ',')
-			return (EXIT_FAILURE);
-		str++;
-	}
-	return (EXIT_SUCCESS);
+    if ((ft_strncmp(str, "F ", 2) != 0) && (ft_strncmp(str, "C ", 2) != 0))
+        return (EXIT_FAILURE);
+    str++;
+    while (*str)
+    {
+        if (!ft_isdigit(*str) && *str != ' ' && *str != ',')
+            return (EXIT_FAILURE);
+        str++;
+    }
+    return (EXIT_SUCCESS);
 }
 
-// Check if string contains only valid map characters (0, 1, ' ', '\0', 'N',
+// Check if string contains only valid map characters (0, 1, ' '(outside), '\0', 'N',
 //	'S', 'W', 'E')
 // Return (0) if OK, (1) if failed
 
 int	check_map_chars(char *str)
 {
-	int i;
+    int i;
+    int len;
 
-	i = 0;
-	while (str[i])
-	{
-		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != '\0'
-			&& !is_direction_char(str[i]))
-			return (EXIT_FAILURE);
+    i = 0;
+    len = ft_strlen(str);
+
+    while (str[i] == ' ')
 		i++;
-	}
-	return (EXIT_SUCCESS);
+	if (str[i] != '1' && str[i] != '0' && !is_direction_char(str[i]))
+        return (EXIT_FAILURE);
+    while (i < len - 1)
+    {
+        if (str[i] == ' ')
+            return (EXIT_FAILURE); // Treat spaces inside the map as an error
+        if (str[i] != '1' && str[i] != '0' && !is_direction_char(str[i]))
+            return (EXIT_FAILURE);
+        i++;
+    }
+    while (str[i] == ' ')
+        i--;
+
+    if (str[i] != '1' && str[i] != '0' && !is_direction_char(str[i]))
+        return (EXIT_FAILURE);
+    return (EXIT_SUCCESS);
 }
