@@ -36,5 +36,4 @@ void	parsing(int argc, char **argv,  t_data **data)
 	check_texture_open(data);
 	check_map_is_closed(data);
 	ft_lst_clear(&list);
-
 }

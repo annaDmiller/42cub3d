@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/21 15:59:55 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/23 17:14:06 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,9 @@
 # include <stdlib.h>
 # include <unistd.h>
 # include <string.h>
+# include <stdbool.h>
+# include <math.h>
+
 
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
@@ -28,6 +31,27 @@
 # define PURPLE "\033[1;35m"
 # define CYAN "\033[1;36m"
 # define RESET "\033[0m"
+
+# define WIDTH 1024
+// # define WIDTH 683
+# define HEIGHT 384
+
+
+typedef struct s_data	t_data;
+typedef struct s_mlx	t_mlx;
+typedef struct s_img	t_img;
+typedef struct s_list	t_list;
+
+enum	e_player
+{
+	X,
+	Y,
+	X_PIXEL,
+	Y_PIXEL,
+	ANGLE,
+	POSITION,
+};
+
 
 // Defines possible types for each line in the linked list
 enum				e_type
@@ -57,32 +81,19 @@ enum				e_RGB
 	BLUE_RGB,
 };
 
-typedef struct s_list
+enum				e_img
 {
-	char			*line;
-	int				line_size;
-	int				type;
-	struct s_list	*next;
-}					t_list;
+	WALL_NORTH,
+	WALL_SOUTH,
+	WALL_WEST,
+	WALL_EAST,
+	PLACEHOLDER,
+	FLOOR_IMG,
+	CEILING_IMG,
+	MAX_IMG,
+};
 
-typedef struct s_img
-{
-	void			*img;
-	int				height;
-	int				width;
-}					t_img;
-
-typedef struct s_mlx
-{
-	void			*mlx;
-	void			*win;
-	t_img			*n_text;
-	t_img			*s_text;
-	t_img			*w_text;
-	t_img			*e_text;
-}					t_mlx;
-
-typedef struct s_data
+typedef struct 		s_data
 {
 	char			**map;
 	int				map_height;
@@ -98,6 +109,35 @@ typedef struct s_data
 	char			player_direction;
 	t_mlx			*mlx;
 }					t_data;
+
+typedef struct 		s_list
+{
+	char			*line;
+	int				line_size;
+	int				type;
+	struct s_list	*next;
+}					t_list;
+
+typedef struct 		s_img
+{
+	void			*img;
+	int				*address;
+	int				bits_per_pixel; // determines the color depth of the image
+	int				height;
+	int				width;
+	int				line_length; // indicates how many bytes each row of the image occupies
+	int				endian; // indicates the byte order of pixel data
+}					t_img;
+
+typedef struct s_mlx
+{
+	void			*mlx_ptr;
+	void			*win_ptr;
+	t_img			*image[MAX_IMG];
+	double			player[POSITION];
+	t_data			*data;
+}					t_mlx;
+
 
 /*PARSING*/
 void				parsing(int argc, char **argv, t_data **data);
@@ -199,6 +239,16 @@ int					ft_strncmp(char *s1, char *s2, unsigned int n);
 char				*ft_strndup(char *str, int n);
 int					get_next_line(int fd, char **line);
 int					ft_putstr_fd(char *s, int fd);
-char	*ft_strtrim(char *str, char *set);
+
+/*MLX_INIT*/
+
+void				start_mlx(t_data *data);
+void				set_texture(t_mlx *mlx);
+int					create_placeholder_image(void *mlx_ptr, t_img *canva);
+void				clean_mlx(t_mlx *mlx);
+void				destroy_texture(t_mlx *mlx);
+int					upload_texture(void *mlx_ptr, char *texture, t_img *img);
+
+
 
 #endif

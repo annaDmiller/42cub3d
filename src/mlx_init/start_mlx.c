@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   start_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/24 17:50:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/23 17:12:17 by olly             ###   ########.fr       */
+/*   Created: 2025/01/23 14:08:15 by olly              #+#    #+#             */
+/*   Updated: 2025/01/23 17:10:49 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	main(int argc, char **argv)
-{
-	t_data *data;
+// initializing the mlx window, setting up texture
 
-	data = NULL;
-	parsing(argc, argv, &data);
-	//start_mlx(data); Under construction
-	return (EXIT_SUCCESS);
+void	start_mlx(t_data *data)
+{
+	t_mlx	mlx;
+
+	mlx = (t_mlx){0};
+	mlx.data = data;
+	set_texture(&mlx);
 }
+
+
