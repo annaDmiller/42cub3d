@@ -22,6 +22,7 @@ void    ray_casting(t_mlx *mlx)
             mlx->ray->dist = inter_hor;
             mlx->ray->hit_vert_wall = 0;
         }
+        find_wall_hit_point(mlx);
         draw_line(mlx, screen_line);
         screen_line++;
         mlx->ray->angle += (mlx->player->sight_rad / SCREEN_WIDTH);

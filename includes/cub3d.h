@@ -73,9 +73,13 @@ typedef struct s_list
 
 typedef struct s_img
 {
-	void	*img;
+	void	*ptr;
+	int		*data;
 	int		height;
 	int		width;
+	int		size_l;
+	int		bpp;
+	int		endian;
 }			t_img;
 
 typedef struct s_texture
@@ -91,6 +95,8 @@ typedef struct s_ray
 	double	angle;
 	float	dist;
 	int		hit_vert_wall;
+	float	wall_hit_x;
+	float	wall_hit_y;
 }			t_ray;
 
 
@@ -101,6 +107,7 @@ typedef struct s_mlx
 	t_player	*player;
 	t_ray		*ray;
 	t_data		*map;
+	t_texture	*textures;
 }				t_mlx;
 
 typedef struct s_player
