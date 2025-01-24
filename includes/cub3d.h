@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/24 15:19:00 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/24 17:40:22 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -217,6 +217,8 @@ void					clean_mlx_data_fd_exit(t_data **data, void *mlx,
 							int *fd, char *msg);
 void					close_error_texture_file(t_data **data, int *fd);
 void					open_textures(t_data **data, int *fd, void *mlx);
+void					print_map(t_data *data);
+void					print_map_copy(t_data *data);
 
 /*LIBFT*/
 

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:31:52 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/21 12:00:13 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:37:24 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,9 +58,7 @@ void	clean_data_map_exit(t_data **data, int i, char *msg)
 	write(2, "Error\n", 6);
 	printf("%s", msg);
 
-	if (i != 0)
-	{
-		while (j < (*data)->map_height)
+	while (j < (*data)->map_height)
 		{
 			if ((j == i - 1) && (i - 1 > 0))
 				printf("[%d] " YELLOW "[%s]" RESET "\n", j, (*data)->map[i - 1]);
@@ -72,7 +70,6 @@ void	clean_data_map_exit(t_data **data, int i, char *msg)
 				printf("[%d] [%s]\n", j, (*data)->map[j]);
 			j++;
 		}
-	}
 	clean_data(data);
 	exit(EXIT_FAILURE);
 }
