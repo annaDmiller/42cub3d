@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: olly <olly@student.42.fr>                  +#+  +:+       +#+         #
+#    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/01/23 17:12:34 by olly             ###   ########.fr        #
+#    Updated: 2025/01/24 14:34:14 by okapshai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,6 +35,7 @@ SRCS_FILES          := \
 					parsing/check_map_empty_lines.c\
 					parsing/check_map_close_fd.c\
 					parsing/check_map_is_closed.c\
+					parsing/count_players.c\
 					parsing/init_data.c\
 					parsing/check_texture_extension.c\
 					parsing/get_map_size.c\
@@ -42,9 +43,10 @@ SRCS_FILES          := \
 					parsing/fill_map.c\
 					parsing/get_player_position.c\
 					parsing/check_texture_open.c\
-					mlx_init/start_mlx.c\
-					mlx_init/set_texture.c\
-					mlx_init/clean_mlx.c  
+					start_mlx/start_mlx.c\
+					start_mlx/set_texture.c\
+					start_mlx/clean_mlx.c \
+					start_mlx/init_player.c  
 
 SRCS_LIBFT          := $(wildcard $(LIBFT_DIR)*.c)
 SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))

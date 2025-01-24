@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/08/24 17:50:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/23 17:12:17 by olly             ###   ########.fr       */
+/*   Updated: 2025/01/24 12:08:39 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,6 @@ int	main(int argc, char **argv)
 
 	data = NULL;
 	parsing(argc, argv, &data);
-	//start_mlx(data); Under construction
+	start_mlx(data);
 	return (EXIT_SUCCESS);
 }

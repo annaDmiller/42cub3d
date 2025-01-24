@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:57:15 by olly              #+#    #+#             */
-/*   Updated: 2025/01/23 16:57:25 by olly             ###   ########.fr       */
+/*   Updated: 2025/01/24 14:57:40 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,18 +24,18 @@ void	clean_mlx(t_mlx *mlx)
 
 void	destroy_texture(t_mlx *mlx)
 {
-	if (mlx->image[PLACEHOLDER]->img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[PLACEHOLDER]->img);
-	if (mlx->image[WALL_NORTH]->img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_NORTH]->img);
-	if (mlx->image[WALL_SOUTH]->img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_SOUTH]->img);
-	if (mlx->image[WALL_WEST]->img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_WEST]->img);
-	if (mlx->image[WALL_EAST]->img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_EAST]->img);
-	if (mlx->image[FLOOR_IMG]->img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[FLOOR_IMG]->img);
-	if (mlx->image[CEILING_IMG]->img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[CEILING_IMG]->img);
+	if (mlx->image[PLACEHOLDER].img)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->image[PLACEHOLDER].img);
+	if (mlx->image[WALL_NORTH].img)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_NORTH].img);
+	if (mlx->image[WALL_SOUTH].img)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_SOUTH].img);
+	if (mlx->image[WALL_WEST].img)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_WEST].img);
+	if (mlx->image[WALL_EAST].img)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_EAST].img);
+	if (mlx->image[FLOOR_IMG].img)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->image[FLOOR_IMG].img);
+	if (mlx->image[CEILING_IMG].img)
+		mlx_destroy_image(mlx->mlx_ptr, mlx->image[CEILING_IMG].img);
 }
