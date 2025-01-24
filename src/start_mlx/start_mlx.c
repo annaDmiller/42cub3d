@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:08:15 by olly              #+#    #+#             */
-/*   Updated: 2025/01/24 15:04:32 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:14:40 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,4 +23,7 @@ void	start_mlx(t_data *data)
 	mlx.data = data;
 	find_player(data->map, &mlx);
 	set_texture(&mlx);
+	if (!mlx.mlx_ptr)
+		return;
+	
 }

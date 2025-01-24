@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/24 15:10:02 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/24 15:19:00 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,11 +118,11 @@ struct 			s_img
 {
 	void				*img;
 	int					*address;
-	int 				bits_per_pixel; // determines the color depth of the image
+	int 				bits_per_pixel; // Color depth of the image : when using ARGB this value is always 32
 	int					height;
 	int					width;
-	int 				line_length; // indicates how many bytes each row of the image occupies
-	int 				endian;      // indicates the byte order of pixel data
+	int 				line_length; // How many bytes each row of the image occupies : (your image width) * 4
+	int 				endian;      //This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
 };
 
 

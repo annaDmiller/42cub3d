@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:55:46 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/24 16:08:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,28 +99,14 @@ int	check_color_syntax(char *str)
 
 int	check_map_chars(char *str)
 {
-    int i;
-    int len;
+	int	i;
 
-    i = 0;
-    len = ft_strlen(str);
-
-    while (str[i] == ' ')
+	i = 0;
+	while (str[i])
+	{
+		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != '\0' && !is_direction_char(str[i]))
+			return (EXIT_FAILURE);
 		i++;
-	if (str[i] != '1' && str[i] != '0' && !is_direction_char(str[i]))
-        return (EXIT_FAILURE);
-    while (i < len - 1)
-    {
-        if (str[i] == ' ')
-            return (EXIT_FAILURE); // Treat spaces inside the map as an error
-        if (str[i] != '1' && str[i] != '0' && !is_direction_char(str[i]))
-            return (EXIT_FAILURE);
-        i++;
-    }
-    while (str[i] == ' ')
-        i--;
-
-    if (str[i] != '1' && str[i] != '0' && !is_direction_char(str[i]))
-        return (EXIT_FAILURE);
-    return (EXIT_SUCCESS);
+	}
+	return (EXIT_SUCCESS);
 }
