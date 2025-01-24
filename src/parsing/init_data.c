@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:42:41 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/21 11:58:26 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/24 14:34:42 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ void	init_data(t_data **data, t_list **list)
 	(*data)->player_x = 0;
 	(*data)->player_y = 0;
 	(*data)->player_direction = '\0';
+	(*data)->player_direction_radian = 0.0;
 }
 
 // Finds a matching line, extracts the texture path (after removing the prefix) and assigns it to *dest
