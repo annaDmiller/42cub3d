@@ -35,3 +35,8 @@ int trgb(int t, int r, int g, int b)
 {
     return (t << 24 | r << 16 | g << 6 | b);
 }
+
+int get_color(int x, int y, t_img *texture)
+{
+    return (*(int *) (texture->addr + (y * texture->size_l + x * (texture->bpp / 8))));
+}

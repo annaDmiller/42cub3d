@@ -28,5 +28,6 @@ void    ray_casting(t_mlx *mlx)
         screen_line++;
         mlx->ray->angle += (mlx->player->sight_rad / SCREEN_WIDTH);
     }
+    mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->mlx_img, 0, 0);
     return ;
 }

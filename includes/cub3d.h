@@ -33,7 +33,7 @@
 # define SCREEN_WIDTH 1900
 # define SCREEN_HIGHT 1000
 # define PLAYER_SIGHT 60
-# define CELL_SIZE 30
+# define CELL_SIZE 64
 
 // Defines possible types for each line in the linked list
 enum		e_type
@@ -98,6 +98,7 @@ typedef struct s_ray
 	int		hit_vert_wall;
 	float	wall_hit_x;
 	float	wall_hit_y;
+	float	wall_height;
 }			t_ray;
 
 
@@ -227,4 +228,5 @@ void    draw_line(t_mlx *mlx, int screen_line);
 void    render_floor_ceiling(t_mlx *mlx);
 void    put_pix_to_img(t_mlx *mlx, int x, int y, int color);
 int trgb(int t, int r, int g, int b);
+int get_color(int x, int y, t_img *texture);
 #endif
