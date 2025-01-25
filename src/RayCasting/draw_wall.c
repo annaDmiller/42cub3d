@@ -15,7 +15,5 @@ void    draw_line(t_mlx *mlx, int screen_line)
     if (wall_top_pxl < 0)
         wall_top_pxl = 0;
     paint_wall(mlx, screen_line, wall_bot_pxl, wall_top_pxl);
-    //paint_floor
-    //paint_ceiling
     return ;
 }

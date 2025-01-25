@@ -73,8 +73,9 @@ typedef struct s_list
 
 typedef struct s_img
 {
-	void	*ptr;
-	int		*data;
+	void	*mlx_img;
+	char	*path;
+	char	*addr;
 	int		height;
 	int		width;
 	int		size_l;
@@ -108,6 +109,7 @@ typedef struct s_mlx
 	t_ray		*ray;
 	t_data		*map;
 	t_texture	*textures;
+	t_img		*img;
 }				t_mlx;
 
 typedef struct s_player
@@ -124,8 +126,8 @@ typedef struct s_data
 	char	**map;
 	int		map_height;
 	int		map_width;
-	int		floor_colors;
-	int		ceiling_colors;
+	int		*floor;
+	int		*ceil;
 	char	*north_texture;
 	char	*south_texture;
 	char	*west_texture;
@@ -222,4 +224,7 @@ int	ft_putstr_fd(char *s, int fd);
 double  norming_angle(double angle);
 void    ray_casting(t_mlx *mlx);
 void    draw_line(t_mlx *mlx, int screen_line);
+void    render_floor_ceiling(t_mlx *mlx);
+void    put_pix_to_img(t_mlx *mlx, int x, int y, int color);
+int trgb(int t, int r, int g, int b);
 #endif

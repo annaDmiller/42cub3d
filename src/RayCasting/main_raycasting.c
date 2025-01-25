@@ -8,6 +8,7 @@ void    ray_casting(t_mlx *mlx)
 
     mlx->ray->angle = mlx->player->angle - (mlx->player->sight_rad / 2);
     screen_line = 0;
+    render_floor_ceiling(mlx);
     while (screen_line < SCREEN_WIDTH)
     {
         inter_hor = find_horiz_intersection(mlx, norming_angle(mlx->ray->angle));
