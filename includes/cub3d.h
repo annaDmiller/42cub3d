@@ -16,6 +16,7 @@
 # include "minilibx-linux/mlx.h"
 # include <X11/X.h>
 # include <fcntl.h>
+# define __USE_XOPEN
 # include <math.h>
 # include <stdbool.h>
 # include <stdio.h>
@@ -31,14 +32,10 @@
 # define CYAN "\033[1;36m"
 # define RESET "\033[0m"
 
-# define WIDTH 1024
-// # define WIDTH 683
-# define HEIGHT 384
-
-typedef struct s_data	t_data;
-typedef struct s_mlx	t_mlx;
-typedef struct s_img	t_img;
-typedef struct s_list	t_list;
+# define SCREEN_WIDTH 1900
+# define SCREEN_HIGHT 1000
+# define PLAYER_SIGHT 60
+# define CELL_SIZE 64
 
 enum					e_player
 {
@@ -50,7 +47,7 @@ enum					e_player
 	POSITION,
 };
 
-enum					e_type
+enum		e_type
 {
 	ERROR_TYPE = 0,
 	EMPTY_LINE,
@@ -84,59 +81,86 @@ enum					e_img
 	WALL_WEST,
 	WALL_EAST,
 	PLACEHOLDER,
-	FLOOR_IMG,
-	CEILING_IMG,
 	IMG,
 };
 
-struct 			s_data
+typedef struct s_data
 {
-	char				**map;
-	int					map_height;
-	int					map_width;
-	int					floor_hex;
-	int					ceiling_hex;
-	int					floor_rgb[3];
-	int					ceiling_rgb[3];
-	char				*north_texture;
-	char				*south_texture;
-	char				*west_texture;
-	char				*east_texture;
-	int					player_x;
-	int					player_y;
-	char				player_direction;
-	float				player_direction_radian;
-};
+	char	**map;
+	int		map_height;
+	int		map_width;
+	int		floor_hex;
+	int		ceiling_hex;
+	int		floor_rgb[3];
+	int		ceiling_rgb[3];
+	char	*north_texture;
+	char	*south_texture;
+	char	*west_texture;
+	char	*east_texture;
+	int		player_x;
+	int		player_y;
+	char	player_direction;
+	float	player_direction_radian;
+}			t_data;
 
-struct 			s_list
+typedef struct s_list
 {
-	char				*line;
-	int					line_size;
-	int					type;
-	t_list				*next;
-};
+	char		*line;
+	int			line_size;
+	int			type;
+	t_list		*next;
+}				t_list;
 
-struct 			s_img
+typedef struct s_texture
 {
-	void				*img;
-	int					*address;
-	int 				bits_per_pixel; // Color depth of the image : when using ARGB this value is always 32
-	int					height;
-	int					width;
-	int 				line_length; // How many bytes each row of the image occupies : (your image width) * 4
-	int 				endian;      //This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
-};
+	t_img	*n_text;
+	t_img	*s_text;
+	t_img	*w_text;
+	t_img	*e_text;	
+}			t_texture;
 
-
-struct 			s_mlx
+typedef struct s_ray
 {
-	void				*mlx_ptr;
-	void				*win_ptr;
-	t_img				image[IMG];
-	double				player[POSITION];
-	double 				movement_vector[2]; // [0] = horizontal movement ,[1] = vertical movement
-	t_data				*data;
-};
+	double	angle;
+	float	dist;
+	int		hit_vert_wall;
+	float	wall_hit_x;
+	float	wall_hit_y;
+	float	wall_height;
+}			t_ray;
+
+typedef struct s_mlx
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_player	*player;
+	t_ray		*ray;
+	t_data		*map;
+	t_texture	*textures;
+	t_img		image[IMG];
+	double		player[POSITION];
+	double 		movement_vector[2]; // [0] = horizontal movement ,[1] = vertical movement
+}				t_mlx;
+
+typedef struct s_player
+{
+	int		pos_x_pix;
+	int		pos_y_pix;
+	double	angle;
+	double	sight_rad;
+}			t_player;
+
+
+typedef struct s_img
+{
+	void	*img;
+	int		*address;
+	int 	bits_per_pixel; // Color depth of the image : when using ARGB this value is always 32
+	int		height;
+	int		width;
+	int 	line_length; // How many bytes each row of the image occupies : (your image width) * 4
+	int 	endian;      //This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
+}			t_img;
 
 /*PARSING*/
 void					parsing(int argc, char **argv, t_data **data);
@@ -218,7 +242,6 @@ void					clean_mlx_data_fd_exit(t_data **data, void *mlx,
 void					close_error_texture_file(t_data **data, int *fd);
 void					open_textures(t_data **data, int *fd, void *mlx);
 void					print_map(t_data *data);
-void					print_map_copy(t_data *data);
 
 /*LIBFT*/
 
@@ -259,4 +282,13 @@ bool					is_player(char c, double *angle);
 
 
 
+
+// RAY_CASTING
+double  norming_angle(double angle);
+void    ray_casting(t_mlx *mlx);
+void    draw_line(t_mlx *mlx, int screen_line);
+void    render_floor_ceiling(t_mlx *mlx);
+void    put_pix_to_img(t_mlx *mlx, int x, int y, int color);
+int trgb(int t, int r, int g, int b);
+int get_color(int x, int y, t_img *texture);
 #endif
