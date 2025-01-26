@@ -3,6 +3,7 @@
 static t_img    *check_side(t_mlx *mlx, int hit_vert_wall);
 static float    find_x_offset(t_mlx *mlx, int hit_vert_wall, t_img *texture);
 
+//seg_fault in paint_wall
 void paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
 {
     t_img   *texture;
@@ -13,14 +14,14 @@ void paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
 
     texture = check_side(mlx, mlx->ray->hit_vert_wall);
     x_text = (int) find_x_offset(mlx, mlx->ray->hit_vert_wall, texture);
-    y_step = (wall_bot_pxl - wall_top_pxl) / texture->height;
+    y_step = texture->height / (wall_bot_pxl - wall_top_pxl);
     y_text = (int) (wall_top_pxl - (SCREEN_HIGHT / 2) + (mlx->ray->wall_height / 2)) * y_step;
     if (y_text < 0)
         y_text = 0;
     while (wall_top_pxl < wall_bot_pxl)
     {
         color = get_color(x_text, y_text, texture);
-        put_pix_to_img(mlx, x_img, wall_top_pxl, color);
+        put_pix_to_img(mlx, x_img, (int) wall_top_pxl, color);
         y_text += y_step;
         wall_top_pxl++;
     }
