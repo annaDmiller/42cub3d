@@ -19,7 +19,7 @@ void	clean_mlx(t_mlx *mlx)
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	if (mlx->mlx_ptr)
 		mlx_destroy_display(mlx->mlx_ptr);
-	clean_data(&mlx->data);
+	clean_data(&mlx->map);
 }
 
 void	destroy_texture(t_mlx *mlx)
@@ -34,8 +34,4 @@ void	destroy_texture(t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_WEST].img);
 	if (mlx->image[WALL_EAST].img)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_EAST].img);
-	if (mlx->image[FLOOR_IMG].img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[FLOOR_IMG].img);
-	if (mlx->image[CEILING_IMG].img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[CEILING_IMG].img);
 }

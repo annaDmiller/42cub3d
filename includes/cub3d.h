@@ -106,19 +106,11 @@ typedef struct s_data
 
 typedef struct s_list
 {
-	char		*line;
-	int			line_size;
-	int			type;
-	t_list		*next;
+	char			*line;
+	int				line_size;
+	int				type;
+	struct s_list	*next;
 }				t_list;
-
-typedef struct s_texture
-{
-	t_img	*n_text;
-	t_img	*s_text;
-	t_img	*w_text;
-	t_img	*e_text;	
-}			t_texture;
 
 typedef struct s_ray
 {
@@ -129,6 +121,17 @@ typedef struct s_ray
 	float	wall_hit_y;
 	float	wall_height;
 }			t_ray;
+
+typedef struct s_img
+{
+	void	*img;
+	int		*address;
+	int 	bits_per_pixel; // Color depth of the image : when using ARGB this value is always 32
+	int		height;
+	int		width;
+	int 	line_length; // How many bytes each row of the image occupies : (your image width) * 4
+	int 	endian;      //This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
+}			t_img;
 
 typedef struct s_mlx
 {
@@ -148,18 +151,6 @@ typedef struct s_player
 	double	angle;
 	double	sight_rad;
 }			t_player;
-
-
-typedef struct s_img
-{
-	void	*img;
-	int		*address;
-	int 	bits_per_pixel; // Color depth of the image : when using ARGB this value is always 32
-	int		height;
-	int		width;
-	int 	line_length; // How many bytes each row of the image occupies : (your image width) * 4
-	int 	endian;      //This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
-}			t_img;
 
 /*PARSING*/
 void					parsing(int argc, char **argv, t_data **data);

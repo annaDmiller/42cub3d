@@ -20,21 +20,21 @@ void	set_texture(t_mlx *mlx)
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		return ;
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, WIDTH, HEIGHT, "O&A Dynamics");
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, SCREEN_WIDTH, SCREEN_HIGHT, "O&A Dynamics");
 	if (!mlx->win_ptr)
 		return (clean_mlx(mlx));
 	if (create_placeholder_image(mlx->mlx_ptr, &mlx->image[PLACEHOLDER]))
 		return (clean_mlx(mlx));
-	if (upload_texture(mlx->mlx_ptr, mlx->data->north_texture,
+	if (upload_texture(mlx->mlx_ptr, mlx->map->north_texture,
 			&mlx->image[WALL_NORTH]))
 		return (clean_mlx(mlx));
-	if (upload_texture(mlx->mlx_ptr, mlx->data->south_texture,
+	if (upload_texture(mlx->mlx_ptr, mlx->map->south_texture,
 			&mlx->image[WALL_SOUTH]))
 		return (clean_mlx(mlx));
-	if (upload_texture(mlx->mlx_ptr, mlx->data->west_texture,
+	if (upload_texture(mlx->mlx_ptr, mlx->map->west_texture,
 			&mlx->image[WALL_WEST]))
 		return (clean_mlx(mlx));
-	if (upload_texture(mlx->mlx_ptr, mlx->data->east_texture,
+	if (upload_texture(mlx->mlx_ptr, mlx->map->east_texture,
 			&mlx->image[WALL_EAST]))
 		return (clean_mlx(mlx));
 }
@@ -57,12 +57,12 @@ int	upload_texture(void *mlx_ptr, char *txt_name, t_img *img)
 int	create_placeholder_image(void *mlx_ptr, t_img *img)
 {
 
-	img->img = mlx_new_image(mlx_ptr, WIDTH, HEIGHT);
+	img->img = mlx_new_image(mlx_ptr, SCREEN_WIDTH, SCREEN_HIGHT);
 	if (!img->img)
 		return (EXIT_FAILURE);
 	img->address = (int *)mlx_get_data_addr(img->img, &img->bits_per_pixel, \
 			&img->line_length, &img->endian);
-	img->width = WIDTH;
-	img->height = HEIGHT;
+	img->width = SCREEN_WIDTH;
+	img->height = SCREEN_HIGHT;
 	return (EXIT_SUCCESS);
 }

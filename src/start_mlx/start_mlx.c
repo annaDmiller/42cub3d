@@ -20,10 +20,10 @@ void	start_mlx(t_data *data)
 	t_mlx	mlx;
 
 	mlx = (t_mlx){0};
-	mlx.data = data;
+	mlx.map = data;
 	find_player(data->map, &mlx);
 	set_texture(&mlx);
 	if (!mlx.mlx_ptr)
 		return;
-	
+	mlx_loop(mlx.mlx_ptr);
 }

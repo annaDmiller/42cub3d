@@ -68,8 +68,8 @@ OBJS_LIBFT          := $(SRCS_LIBFT:$(LIBFT_DIR)%.c=$(OBJS_DIR)libft/%.o)
 DEPS                := $(OBJS:$(OBJS_DIR)%.o=$(OBJS_DIR)%.d)
 
 # FLAGS
-CC                  := gcc
-CFLAGS              := -Wall -Wextra -Werror -MMD -MP -g
+CC                  := cc
+CFLAGS              := -Wall -Wextra -Werror -g3
 INCFLAGS            := -I$(INC_DIR) -I$(LIBFT_INC) -I$(MLX_INC)
 LX                  := $(MLX_DIR)libmlx.a
 LIB                 := -L $(MLX_DIR) -lmlx -lXext -lX11 -lm
