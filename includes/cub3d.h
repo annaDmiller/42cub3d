@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/24 17:40:22 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/26 10:51:50 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,8 +94,10 @@ struct 			s_data
 	char				**map;
 	int					map_height;
 	int					map_width;
-	int					floor_colors;
-	int					ceiling_colors;
+	int					floor_hex;
+	int					ceiling_hex;
+	int					floor_rgb[3];
+	int					ceiling_rgb[3];
 	char				*north_texture;
 	char				*south_texture;
 	char				*west_texture;
@@ -189,10 +191,8 @@ void					init_data(t_data **data, t_list **list);
 void					fill_texture(t_data **data, t_list **list, char **dest,
 							char *src);
 char					*trimmed_string(char *str, char *set);
-void					fill_colors(t_data **data, t_list **list, int *dst,
-							char *src);
-int						rgb_in_hexa_value(t_data **data, t_list **list,
-							char **str);
+void					fill_colors(t_data **data, t_list **list, int *dst_hex, int *dst_rgb, char *src);
+int						rgb_in_hexa_value(t_data **data, t_list **list, char **str, int *dst_rgb);
 int						create_trgb_value(int t, int r, int g, int b);
 int						check_rgb_syntax(char *str);
 void					check_value_limits(t_data **data, t_list **list,
@@ -240,6 +240,8 @@ int						ft_strncmp(char *s1, char *s2, unsigned int n);
 char					*ft_strndup(char *str, int n);
 int						get_next_line(int fd, char **line);
 int						ft_putstr_fd(char *s, int fd);
+void	print_data_structure(t_data *data);
+
 
 /*MLX_INIT*/
 

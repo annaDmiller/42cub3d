@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_data.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
+/*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 14:42:41 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/24 14:34:42 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/26 10:53:11 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,14 +19,15 @@ void	initialize_data(t_data **data, t_list **list)
 	fill_texture(data, list, &(*data)->south_texture, "SO ");
 	fill_texture(data, list, &(*data)->west_texture, "WE ");
 	fill_texture(data, list, &(*data)->east_texture, "EA ");
-	fill_colors(data, list, &(*data)->floor_colors, "F ");
-	fill_colors(data, list, &(*data)->ceiling_colors, "C ");
+	fill_colors(data, list, &(*data)->floor_hex, (*data)->floor_rgb, "F ");
+	fill_colors(data, list, &(*data)->ceiling_hex, (*data)->ceiling_rgb, "C ");
 	get_map_size(data, list);
 	init_empty_map(data, list);
 	fill_map(data, list);
 	get_player_position(data);
-}
+	//print_data_structure(*data);
 
+}
 
 // Initializes the t_data structure
 void	init_data(t_data **data, t_list **list)
@@ -37,8 +38,14 @@ void	init_data(t_data **data, t_list **list)
 	(*data)->map = NULL;
 	(*data)->map_height = 0;
 	(*data)->map_width = 0;
-	(*data)->floor_colors = 0;
-	(*data)->ceiling_colors = 0;
+	(*data)->floor_hex = 0;
+	(*data)->ceiling_hex = 0;
+	(*data)->floor_rgb[0] = 0;
+	(*data)->floor_rgb[1] = 0;
+	(*data)->floor_rgb[2] = 0;
+	(*data)->ceiling_rgb[0] = 0;
+	(*data)->ceiling_rgb[1] = 0;
+	(*data)->ceiling_rgb[2] = 0;
 	(*data)->north_texture = NULL;
 	(*data)->south_texture = NULL;
 	(*data)->west_texture = NULL;
@@ -48,6 +55,7 @@ void	init_data(t_data **data, t_list **list)
 	(*data)->player_direction = '\0';
 	(*data)->player_direction_radian = 0.0;
 }
+
 
 // Finds a matching line, extracts the texture path (after removing the prefix) and assigns it to *dest
 
@@ -103,7 +111,7 @@ char	*trimmed_string(char *str, char *set)
 
 // Check the list, searches for a color identifier "F " or "C " and extracts their RGB values
 
-void	fill_colors(t_data **data, t_list **list, int *dst, char *src)
+void	fill_colors(t_data **data, t_list **list, int *dst_hex, int *dst_rgb, char *src)
 {
 	t_list	*tmp;
 	char	*to_split;
@@ -122,8 +130,8 @@ void	fill_colors(t_data **data, t_list **list, int *dst, char *src)
 				else if (ft_strcmp(src, "C ") == 0)
 					clean_all_exit(data, list, "Ceiling RGB data init failed\n");
 			}
-			*dst = rgb_in_hexa_value(data, list, &to_split);
-			if (*dst == -1)
+			*dst_hex = rgb_in_hexa_value(data, list, &to_split, dst_rgb);
+			if (*dst_hex == -1)
 			{
 				free(to_split);
 				clean_all_exit(data, list, "Wrong RGB Format, found unauthorized space\n");
@@ -134,11 +142,12 @@ void	fill_colors(t_data **data, t_list **list, int *dst, char *src)
 	}
 }
 
+//  Fill both the RGB array and the hex color
 // Takes a string of comma-separated RGB values and converts them into a single hexadecimal value:
 // Example "F 255,0,0" into "0x0000ff000"
 // Return (0x0000ff000)
 
-int	rgb_in_hexa_value(t_data **data, t_list **list, char **str)
+int	rgb_in_hexa_value(t_data **data, t_list **list, char **str, int *dst_rgb)
 {
 	char	**array;
 	int		rgb[3];
@@ -155,16 +164,20 @@ int	rgb_in_hexa_value(t_data **data, t_list **list, char **str)
 	if (!array)
 	{
 		free(str);
-		clean_all_exit(data, list, "Split RGB on comas Malloc fail\n");
+		clean_all_exit(data, list, "Split RGB on commas Malloc fail\n");
 	}
 	check_value_limits(data, list, array, str);
 	rgb[RED_RGB] = ft_atoi(array[RED_RGB]);
 	rgb[GREEN_RGB] = ft_atoi(array[GREEN_RGB]);
 	rgb[BLUE_RGB] = ft_atoi(array[BLUE_RGB]);
 	hexa_color = create_trgb_value(0, rgb[RED_RGB], rgb[GREEN_RGB], rgb[BLUE_RGB]);
+	dst_rgb[RED_RGB] = rgb[RED_RGB];
+	dst_rgb[GREEN_RGB] = rgb[GREEN_RGB];
+	dst_rgb[BLUE_RGB] = rgb[BLUE_RGB];
 	free_array(array);
 	return (hexa_color);
 }
+
 
 
 // Create a trgb single int from 4 ints. One byte containing 2^8 = 256
@@ -283,3 +296,32 @@ int	count_digits(char *str)
 	return (i);
 }
 
+
+void	print_data_structure(t_data *data)
+{
+	int i;
+
+	printf("=== t_data Structure ===\n");
+	printf("Map Dimensions: Width = %d, Height = %d\n", data->map_width, data->map_height);
+	printf("\nMap:\n");
+	for (i = 0; i < data->map_height; i++)
+		printf("%s\n", data->map[i]);
+	printf("\nTextures:\n");
+	printf("North Texture: %s\n", data->north_texture ? data->north_texture : "Not Set");
+	printf("South Texture: %s\n", data->south_texture ? data->south_texture : "Not Set");
+	printf("West Texture: %s\n", data->west_texture ? data->west_texture : "Not Set");
+	printf("East Texture: %s\n", data->east_texture ? data->east_texture : "Not Set");
+	printf("\nFloor Colors (RGB): [%d, %d, %d]\n", 
+		data->floor_rgb[RED_RGB], data->floor_rgb[GREEN_RGB], data->floor_rgb[BLUE_RGB]);
+	printf("Floor Color (Hex): 0x%08x\n", data->floor_hex);
+
+	printf("\nCeiling Colors (RGB): [%d, %d, %d]\n", 
+		data->ceiling_rgb[RED_RGB], data->ceiling_rgb[GREEN_RGB], data->ceiling_rgb[BLUE_RGB]);
+	printf("Ceiling Color (Hex): 0x%08x\n", data->ceiling_hex);
+	printf("\nPlayer Details:\n");
+	printf("Position: X = %d, Y = %d\n", data->player_x, data->player_y);
+	printf("Direction: %c\n", data->player_direction);
+	printf("Direction (Radian): %.2f\n", data->player_direction_radian);
+
+	printf("========================\n");
+}
