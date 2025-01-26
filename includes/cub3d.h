@@ -35,7 +35,16 @@
 # define PLAYER_SIGHT 60
 # define CELL_SIZE 64
 
-// Defines possible types for each line in the linked list
+enum					e_player
+{
+	X,
+	Y,
+	X_PIXEL,
+	Y_PIXEL,
+	ANGLE,
+	POSITION,
+};
+
 enum		e_type
 {
 	ERROR_TYPE = 0,
@@ -63,6 +72,16 @@ enum		e_RGB
 	BLUE_RGB,
 };
 
+enum					e_img
+{
+	WALL_NORTH,
+	WALL_SOUTH,
+	WALL_WEST,
+	WALL_EAST,
+	PLACEHOLDER,
+	IMG,
+};
+
 typedef struct s_list
 {
 	char	*line;
@@ -73,14 +92,13 @@ typedef struct s_list
 
 typedef struct s_img
 {
-	void	*mlx_img;
-	char	*path;
-	char	*addr;
+	void	*img;
+	int		*address;
+	int 	bits_per_pixel; // Color depth of the image : when using ARGB this value is always 32
 	int		height;
 	int		width;
-	int		size_l;
-	int		bpp;
-	int		endian;
+	int 	line_length; // How many bytes each row of the image occupies : (your image width) * 4
+	int 	endian;      //This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
 }			t_img;
 
 typedef struct s_texture
@@ -101,16 +119,15 @@ typedef struct s_ray
 	float	wall_height;
 }			t_ray;
 
-
 typedef struct s_mlx
 {
-	void		*mlx;
-	void		*win;
+	void		*mlx_ptr;
+	void		*win_ptr;
 	t_player	*player;
 	t_ray		*ray;
 	t_data		*map;
 	t_texture	*textures;
-	t_img		*img;
+	t_img		image[IMG];
 }				t_mlx;
 
 typedef struct s_player
@@ -127,15 +144,18 @@ typedef struct s_data
 	char	**map;
 	int		map_height;
 	int		map_width;
-	int		*floor;
-	int		*ceil;
+	int		floor_hex;
+	int		ceiling_hex;
+	int		floor_rgb[3];
+	int		ceiling_rgb[3];
 	char	*north_texture;
 	char	*south_texture;
 	char	*west_texture;
 	char	*east_texture;
-	int		player_position_x;
-	int		player_position_y;
+	int		player_x;
+	int		player_y;
 	char	player_direction;
+	float	player_direction_radian;
 }			t_data;
 
 /*PARSING*/
