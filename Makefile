@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
+#    By: olly <olly@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/01/24 14:34:14 by okapshai         ###   ########.fr        #
+#    Updated: 2025/01/26 18:19:20 by olly             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,7 +46,8 @@ SRCS_FILES          := \
 					start_mlx/start_mlx.c\
 					start_mlx/set_texture.c\
 					start_mlx/clean_mlx.c \
-					start_mlx/init_player.c  
+					start_mlx/init_player.c \
+					start_mlx/handle_keypress.c 
 
 SRCS_LIBFT          := $(wildcard $(LIBFT_DIR)*.c)
 SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))
@@ -68,7 +69,7 @@ OBJS_LIBFT          := $(SRCS_LIBFT:$(LIBFT_DIR)%.c=$(OBJS_DIR)libft/%.o)
 DEPS                := $(OBJS:$(OBJS_DIR)%.o=$(OBJS_DIR)%.d)
 
 # FLAGS
-CC                  := gcc
+CC                  := cc
 CFLAGS              := -Wall -Wextra -Werror -MMD -MP -g
 INCFLAGS            := -I$(INC_DIR) -I$(LIBFT_INC) -I$(MLX_INC)
 LX                  := $(MLX_DIR)libmlx.a

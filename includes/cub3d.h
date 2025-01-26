@@ -6,7 +6,7 @@
 /*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/26 12:52:29 by olly             ###   ########.fr       */
+/*   Updated: 2025/01/26 18:20:18 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,13 @@
 # define SCREEN_HIGHT 1000
 # define PLAYER_SIGHT 60
 # define CELL_SIZE 64
+
+# define ESCAPE 65307
+# define A_KEY 97
+# define S_KEY 115
+# define W_KEY 119
+# define D_KEY 100
+# define LEFT 65361
 
 enum					e_player
 {
@@ -235,6 +242,8 @@ void					clean_mlx_data_fd_exit(t_data **data, void *mlx,
 void					close_error_texture_file(t_data **data, int *fd);
 void					open_textures(t_data **data, int *fd, void *mlx);
 void					print_map(t_data *data);
+int						handle_keypress(int keycode, t_mlx *mlx);
+int						handle_close(t_mlx *mlx);
 
 /*LIBFT*/
 
