@@ -44,6 +44,7 @@ enum					e_player
 	X_PIXEL,
 	Y_PIXEL,
 	ANGLE,
+	SIGHT,
 	POSITION,
 };
 
@@ -133,10 +134,8 @@ typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_player	*player;
 	t_ray		*ray;
 	t_data		*map;
-	t_texture	*textures;
 	t_img		image[IMG];
 	double		player[POSITION];
 	double 		movement_vector[2]; // [0] = horizontal movement ,[1] = vertical movement
