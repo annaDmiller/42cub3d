@@ -6,7 +6,7 @@
 /*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/26 10:51:50 by olly             ###   ########.fr       */
+/*   Updated: 2025/01/26 12:52:29 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,19 +105,12 @@ typedef struct s_data
 
 typedef struct s_list
 {
-	char		*line;
-	int			line_size;
-	int			type;
-	t_list		*next;
+	char				*line;
+	int					line_size;
+	int					type;
+	struct s_list		*next;
 }				t_list;
 
-typedef struct s_texture
-{
-	t_img	*n_text;
-	t_img	*s_text;
-	t_img	*w_text;
-	t_img	*e_text;	
-}			t_texture;
 
 typedef struct s_ray
 {
@@ -129,19 +122,6 @@ typedef struct s_ray
 	float	wall_height;
 }			t_ray;
 
-typedef struct s_mlx
-{
-	void		*mlx_ptr;
-	void		*win_ptr;
-	t_player	*player;
-	t_ray		*ray;
-	t_data		*map;
-	t_texture	*textures;
-	t_img		image[IMG];
-	double		player[POSITION];
-	double 		movement_vector[2]; // [0] = horizontal movement ,[1] = vertical movement
-}				t_mlx;
-
 typedef struct s_player
 {
 	int		pos_x_pix;
@@ -149,7 +129,6 @@ typedef struct s_player
 	double	angle;
 	double	sight_rad;
 }			t_player;
-
 
 typedef struct s_img
 {
@@ -161,6 +140,20 @@ typedef struct s_img
 	int 	line_length; // How many bytes each row of the image occupies : (your image width) * 4
 	int 	endian;      //This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
 }			t_img;
+
+
+typedef struct s_mlx
+{
+	void		*mlx_ptr;
+	void		*win_ptr;
+	t_player	*player1;
+	t_ray		*ray;
+	t_data		*map;
+	t_img		image[IMG];
+	double		player[POSITION];
+	double 		movement_vector[2]; // [0] = horizontal movement ,[1] = vertical movement
+}				t_mlx;
+
 
 /*PARSING*/
 void					parsing(int argc, char **argv, t_data **data);
