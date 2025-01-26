@@ -46,7 +46,13 @@ SRCS_FILES          := \
 					start_mlx/start_mlx.c\
 					start_mlx/set_texture.c\
 					start_mlx/clean_mlx.c \
-					start_mlx/init_player.c  
+					start_mlx/init_player.c \
+					RayCasting/draw_wall.c \
+					RayCasting/find_intersection.c \
+					RayCasting/main_raycasting.c \
+					RayCasting/paint_wall.c \
+					RayCasting/render_floor_and_ceiling.c \
+					RayCasting/utils_raycasting.c
 
 SRCS_LIBFT          := $(wildcard $(LIBFT_DIR)*.c)
 SRCS                := $(addprefix $(SRCS_DIR), $(SRCS_FILES))

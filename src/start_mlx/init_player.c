@@ -56,7 +56,7 @@ void	init_player(t_mlx *mlx, int *position)
 	mlx->player[Y_PIXEL] = mlx->player[Y] * CELL_SIZE;
 	mlx->movement_vector[0] = cos(mlx->player[ANGLE]) * MOV_SPEED; //  horizontal (5 = movement speed)
 	mlx->movement_vector[1] = sin(mlx->player[ANGLE]) * MOV_SPEED; //  vertical
-	mlx->player[SIGHT] = PLAYER_SIGHT * M_PI;
+	mlx->player[SIGHT] = PLAYER_SIGHT * (M_PI / 180);
 }
 
 
@@ -67,9 +67,9 @@ bool	is_player(char c, double *angle)
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (c == 'N')
-			*angle = M_PI / 2; // = 90 degree
+			*angle = 3 * M_PI_2; // = 90 degree
 		else if (c == 'S')
-			*angle = 1.5 * M_PI; // = 270 degree
+			*angle = M_PI_2; // = 270 degree
 		else if (c == 'W')
 			*angle = M_PI; // = 180 degree
 		else if (c == 'E')

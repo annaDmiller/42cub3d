@@ -1,5 +1,7 @@
 #include "../../includes/cub3d.h"
 
+static int check_if_wall_hit(float x, float y, t_mlx* mlx);
+
 float  find_horiz_intersection(t_mlx *mlx, double angle)
 {
     float   y_step;

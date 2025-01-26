@@ -3,7 +3,7 @@
 static t_img    *check_side(t_mlx *mlx, int hit_vert_wall);
 static float    find_x_offset(t_mlx *mlx, int hit_vert_wall, t_img *texture);
 
-void texture_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
+void paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
 {
     t_img   *texture;
     int     x_text;

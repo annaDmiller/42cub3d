@@ -19,5 +19,6 @@ int	main(int argc, char **argv)
 	data = NULL;
 	parsing(argc, argv, &data);
 	start_mlx(data);
+	//clean_all_function
 	return (EXIT_SUCCESS);
 }

@@ -32,8 +32,8 @@
 # define CYAN "\033[1;36m"
 # define RESET "\033[0m"
 
-# define SCREEN_WIDTH 1900
-# define SCREEN_HIGHT 1000
+# define SCREEN_WIDTH 1000
+# define SCREEN_HIGHT 500
 # define PLAYER_SIGHT 60
 # define CELL_SIZE 64
 # define MOV_SPEED 4
@@ -271,16 +271,16 @@ void					find_player(char **parsed_map, t_mlx *mlx);
 void					init_player(t_mlx *mlx, int *position);
 bool					is_player(char c, double *angle);
 
-
-
-
-
 // RAY_CASTING
 double  norming_angle(double angle);
 void    ray_casting(t_mlx *mlx);
+float  find_horiz_intersection(t_mlx *mlx, double angle);
+float   find_vert_intersection(t_mlx *mlx, double angle);
 void    draw_line(t_mlx *mlx, int screen_line);
 void    render_floor_ceiling(t_mlx *mlx);
 void    put_pix_to_img(t_mlx *mlx, int x, int y, int color);
-int trgb(int t, int r, int g, int b);
-int get_color(int x, int y, t_img *texture);
+void	paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl);
+int 	trgb(int t, int r, int g, int b);
+int 	get_color(int x, int y, t_img *texture);
+void    find_wall_hit_point(t_mlx *mlx);
 #endif

@@ -16,7 +16,21 @@ double  norming_angle(double angle)
 void    find_wall_hit_point(t_mlx *mlx)
 {
     mlx->ray->wall_hit_y = (float) mlx->player[Y_PIXEL] + mlx->ray->dist * sin(norming_angle(mlx->ray->angle));
+    if (mlx->ray->hit_vert_wall == 0)
+    {
+        if (ceil(mlx->ray->wall_hit_y) - mlx->ray->wall_hit_y <= mlx->ray->wall_hit_y - floor(mlx->ray->wall_hit_y))
+            mlx->ray->wall_hit_y = ceil(mlx->ray->wall_hit_y);
+        else
+            mlx->ray->wall_hit_y = floor(mlx->ray->wall_hit_y);
+    }
     mlx->ray->wall_hit_x = (float) mlx->player[X_PIXEL] + mlx->ray->dist * cos(norming_angle(mlx->ray->angle));
+    if (mlx->ray->hit_vert_wall == 1)
+    {
+        if (ceil(mlx->ray->wall_hit_x) - mlx->ray->wall_hit_x <= mlx->ray->wall_hit_x - floor(mlx->ray->wall_hit_x))
+            mlx->ray->wall_hit_x = ceil(mlx->ray->wall_hit_x);
+        else
+            mlx->ray->wall_hit_x = floor(mlx->ray->wall_hit_x);
+    }
     return ;
 }
 
