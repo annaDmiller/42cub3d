@@ -36,6 +36,8 @@
 # define SCREEN_HIGHT 1000
 # define PLAYER_SIGHT 60
 # define CELL_SIZE 64
+# define MOV_SPEED 4
+# define ROT_SPEED 0.045
 
 enum					e_player
 {

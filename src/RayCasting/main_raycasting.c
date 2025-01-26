@@ -6,7 +6,7 @@ void    ray_casting(t_mlx *mlx)
     float   inter_vert;
     int     screen_line;
 
-    mlx->ray->angle = mlx->player->angle - (mlx->player->sight_rad / 2);
+    mlx->ray->angle = mlx->player[ANGLE] - (mlx->player[SIGHT] / 2);
     screen_line = 0;
     render_floor_ceiling(mlx);
     while (screen_line < SCREEN_WIDTH)
@@ -26,8 +26,8 @@ void    ray_casting(t_mlx *mlx)
         find_wall_hit_point(mlx);
         draw_line(mlx, screen_line);
         screen_line++;
-        mlx->ray->angle += (mlx->player->sight_rad / SCREEN_WIDTH);
+        mlx->ray->angle += (mlx->player[SIGHT] / SCREEN_WIDTH);
     }
-    mlx_put_image_to_window(mlx->mlx, mlx->win, mlx->img->mlx_img, 0, 0);
+    mlx_put_image_to_window(mlx->mlx_ptr, mlx->win_ptr, mlx->image[PLACEHOLDER].img, 0, 0);
     return ;
 }

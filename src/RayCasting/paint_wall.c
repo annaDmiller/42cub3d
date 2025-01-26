@@ -33,16 +33,16 @@ static t_img    *check_side(t_mlx *mlx, int hit_vert_wall)
     if (hit_vert_wall == 1)
     {
         if (mlx->ray->angle > M_PI_2 && mlx->ray->angle < 3 * M_PI_2)
-            return (mlx->textures->w_text);
+            return (&(mlx->image[WALL_WEST]));
         else
-            return (mlx->textures->e_text);
+            return (&(mlx->image[WALL_EAST]));
     }
     else
     {
         if (mlx->ray->angle > 0 && mlx->ray->angle < M_PI)
-            return (mlx->textures->s_text);
+            return (&(mlx->image[WALL_SOUTH]));
         else
-            return (mlx->textures->n_text);
+            return (&(mlx->image[WALL_NORTH]));
     }
 }
 

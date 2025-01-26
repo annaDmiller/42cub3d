@@ -52,10 +52,11 @@ void	init_player(t_mlx *mlx, int *position)
 {
 	mlx->player[X] = position[0] + 0.5f; // Adds 0.5 to the grid position so the player starts at the center of the cell rather than at its edge
 	mlx->player[Y] = position[1] + 0.5f;
-	mlx->player[X_PIXEL] = mlx->player[X] * 64; // Converts the X-coordinate to pixel units (assuming each grid cell is 64x64 pixels
-	mlx->player[Y_PIXEL] = mlx->player[Y] * 64;
-	mlx->movement_vector[0] = cos(mlx->player[ANGLE]) * 5; //  horizontal (5 = movement speed)
-	mlx->movement_vector[1] = sin(mlx->player[ANGLE]) * 5; //  vertical
+	mlx->player[X_PIXEL] = mlx->player[X] * CELL_SIZE; // Converts the X-coordinate to pixel units (assuming each grid cell is 64x64 pixels
+	mlx->player[Y_PIXEL] = mlx->player[Y] * CELL_SIZE;
+	mlx->movement_vector[0] = cos(mlx->player[ANGLE]) * MOV_SPEED; //  horizontal (5 = movement speed)
+	mlx->movement_vector[1] = sin(mlx->player[ANGLE]) * MOV_SPEED; //  vertical
+	mlx->player[SIGHT] = PLAYER_SIGHT * M_PI;
 }
 
 
