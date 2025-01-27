@@ -52,5 +52,5 @@ int trgb(int t, int r, int g, int b)
 
 int get_color(int x, int y, t_img *texture)
 {
-    return (*(int *) (texture->address + (y * texture->line_length + x * (texture->bits_per_pixel / 8))));
+    return (*(int *) (texture->address + (y * texture->width + x)));
 }

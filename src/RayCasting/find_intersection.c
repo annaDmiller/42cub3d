@@ -67,7 +67,7 @@ static int check_if_wall_hit(float x, float y, t_mlx* mlx)
     int ind_x;
     int ind_y;
 
-    if (x < 0 || y < 0)
+    if (x < 0 || y < 0 || x > mlx->map->map_width * CELL_SIZE || y > mlx->map->map_height * CELL_SIZE)
         return (1);
     ind_x = floor(x / CELL_SIZE);
     ind_y = floor(y / CELL_SIZE);
