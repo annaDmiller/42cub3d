@@ -6,7 +6,7 @@
 /*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:08:15 by olly              #+#    #+#             */
-/*   Updated: 2025/01/28 12:07:18 by olly             ###   ########.fr       */
+/*   Updated: 2025/01/28 12:12:04 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	start_mlx(t_data *data)
 	set_texture(&mlx);
 	if (!mlx.mlx_ptr)
 		return ;
+	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, handle_keypress, &mlx);
+	mlx_hook(mlx.win_ptr, ClientMessage, StructureNotifyMask, handle_close, &mlx);
 	if (mlx_init_struct(&mlx) == -1)
 		return ;
 	ray_casting(&mlx);

@@ -6,7 +6,7 @@
 #    By: olly <olly@student.42.fr>                  +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/01/28 12:04:50 by olly             ###   ########.fr        #
+#    Updated: 2025/01/28 12:13:15 by olly             ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -47,6 +47,7 @@ SRCS_FILES          := \
 					start_mlx/set_texture.c\
 					start_mlx/clean_mlx.c \
 					start_mlx/init_player.c \
+					start_mlx/handle_keypress.c\
 					RayCasting/draw_wall.c \
 					RayCasting/find_intersection.c \
 					RayCasting/main_raycasting.c \
@@ -75,7 +76,7 @@ DEPS                := $(OBJS:$(OBJS_DIR)%.o=$(OBJS_DIR)%.d)
 
 # FLAGS
 CC                  := cc
-CFLAGS              := -Wall -Wextra -Werror -g3
+CFLAGS              := -Wall -Wextra -Werror -MMD -MP -g3
 INCFLAGS            := -I$(INC_DIR) -I$(LIBFT_INC) -I$(MLX_INC)
 LX                  := $(MLX_DIR)libmlx.a
 LIB                 := -L $(MLX_DIR) -lmlx -lXext -lX11 -lm
