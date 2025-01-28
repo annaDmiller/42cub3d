@@ -6,7 +6,7 @@
 /*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:57:15 by olly              #+#    #+#             */
-/*   Updated: 2025/01/26 16:16:23 by olly             ###   ########.fr       */
+/*   Updated: 2025/01/26 18:26:33 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,8 +34,4 @@ void	destroy_texture(t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_WEST].img);
 	if (mlx->image[WALL_EAST].img)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_EAST].img);
-	/* if (mlx->image[FLOOR_IMG].img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[FLOOR_IMG].img);
-	if (mlx->image[CEILING_IMG].img)
-		mlx_destroy_image(mlx->mlx_ptr, mlx->image[CEILING_IMG].img); */
 }
