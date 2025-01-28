@@ -6,7 +6,7 @@
 /*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/28 12:05:59 by olly             ###   ########.fr       */
+/*   Updated: 2025/01/28 17:21:04 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,6 +45,7 @@
 # define W_KEY 119
 # define D_KEY 100
 # define LEFT 65361
+# define RIGHT 65363
 
 enum					e_player
 {
