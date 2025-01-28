@@ -6,7 +6,7 @@
 /*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/26 18:20:18 by olly             ###   ########.fr       */
+/*   Updated: 2025/01/28 12:05:59 by olly             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,12 @@
 # define CYAN "\033[1;36m"
 # define RESET "\033[0m"
 
-# define SCREEN_WIDTH 1900
-# define SCREEN_HIGHT 1000
+# define SCREEN_WIDTH 1000
+# define SCREEN_HIGHT 500
 # define PLAYER_SIGHT 60
 # define CELL_SIZE 64
+# define MOV_SPEED 4
+# define ROT_SPEED 0.045
 
 # define ESCAPE 65307
 # define A_KEY 97
@@ -51,6 +53,7 @@ enum					e_player
 	X_PIXEL,
 	Y_PIXEL,
 	ANGLE,
+	SIGHT,
 	POSITION,
 };
 
@@ -112,12 +115,11 @@ typedef struct s_data
 
 typedef struct s_list
 {
-	char				*line;
-	int					line_size;
-	int					type;
-	struct s_list		*next;
+	char			*line;
+	int				line_size;
+	int				type;
+	struct s_list	*next;
 }				t_list;
-
 
 typedef struct s_ray
 {
@@ -128,14 +130,6 @@ typedef struct s_ray
 	float	wall_hit_y;
 	float	wall_height;
 }			t_ray;
-
-typedef struct s_player
-{
-	int		pos_x_pix;
-	int		pos_y_pix;
-	double	angle;
-	double	sight_rad;
-}			t_player;
 
 typedef struct s_img
 {
@@ -148,12 +142,10 @@ typedef struct s_img
 	int 	endian;      //This value can be either 0 or 1 and will indicate how the ARGB bytes are organized (from front to back or back to front)
 }			t_img;
 
-
 typedef struct s_mlx
 {
 	void		*mlx_ptr;
 	void		*win_ptr;
-	t_player	*player1;
 	t_ray		*ray;
 	t_data		*map;
 	t_img		image[IMG];
@@ -161,6 +153,13 @@ typedef struct s_mlx
 	double 		movement_vector[2]; // [0] = horizontal movement ,[1] = vertical movement
 }				t_mlx;
 
+typedef struct s_player
+{
+	int		pos_x_pix;
+	int		pos_y_pix;
+	double	angle;
+	double	sight_rad;
+}			t_player;
 
 /*PARSING*/
 void					parsing(int argc, char **argv, t_data **data);
@@ -281,16 +280,16 @@ void					find_player(char **parsed_map, t_mlx *mlx);
 void					init_player(t_mlx *mlx, int *position);
 bool					is_player(char c, double *angle);
 
-
-
-
-
 // RAY_CASTING
 double  norming_angle(double angle);
 void    ray_casting(t_mlx *mlx);
+float  find_horiz_intersection(t_mlx *mlx, double angle);
+float   find_vert_intersection(t_mlx *mlx, double angle);
 void    draw_line(t_mlx *mlx, int screen_line);
 void    render_floor_ceiling(t_mlx *mlx);
 void    put_pix_to_img(t_mlx *mlx, int x, int y, int color);
-int trgb(int t, int r, int g, int b);
-int get_color(int x, int y, t_img *texture);
+void	paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl);
+int 	trgb(int t, int r, int g, int b);
+int 	get_color(int x, int y, t_img *texture);
+void    find_wall_hit_point(t_mlx *mlx);
 #endif

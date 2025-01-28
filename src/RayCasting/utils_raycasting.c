@@ -15,8 +15,22 @@ double  norming_angle(double angle)
 //не уверена на счёт этой функции, примеров этого не было, придумала сама
 void    find_wall_hit_point(t_mlx *mlx)
 {
-    mlx->ray->wall_hit_y = mlx->player->pos_y_pix + mlx->ray->dist * sin(norming_angle(mlx->ray->angle));
-    mlx->ray->wall_hit_x = mlx->player->pos_x_pix + mlx->ray->dist * cos(norming_angle(mlx->ray->angle));
+    mlx->ray->wall_hit_y = (float) mlx->player[Y_PIXEL] + mlx->ray->dist * sin(norming_angle(mlx->ray->angle));
+    if (mlx->ray->hit_vert_wall == 0)
+    {
+        if (ceil(mlx->ray->wall_hit_y) - mlx->ray->wall_hit_y <= mlx->ray->wall_hit_y - floor(mlx->ray->wall_hit_y))
+            mlx->ray->wall_hit_y = ceil(mlx->ray->wall_hit_y);
+        else
+            mlx->ray->wall_hit_y = floor(mlx->ray->wall_hit_y);
+    }
+    mlx->ray->wall_hit_x = (float) mlx->player[X_PIXEL] + mlx->ray->dist * cos(norming_angle(mlx->ray->angle));
+    if (mlx->ray->hit_vert_wall == 1)
+    {
+        if (ceil(mlx->ray->wall_hit_x) - mlx->ray->wall_hit_x <= mlx->ray->wall_hit_x - floor(mlx->ray->wall_hit_x))
+            mlx->ray->wall_hit_x = ceil(mlx->ray->wall_hit_x);
+        else
+            mlx->ray->wall_hit_x = floor(mlx->ray->wall_hit_x);
+    }
     return ;
 }
 
@@ -26,7 +40,7 @@ void    put_pix_to_img(t_mlx *mlx, int x, int y, int color)
 
     if (y < 0 || y > SCREEN_HIGHT - 1 || x < 0 || x > SCREEN_WIDTH - 1)
         return ;
-    pix = (mlx->img->addr + (y * mlx->img->size_l + x * (mlx->img->bpp / 8)));
+    pix = ((char *)mlx->image[PLACEHOLDER].address + (y * mlx->image[PLACEHOLDER].line_length + x * (mlx->image[PLACEHOLDER].bits_per_pixel / 8)));
     *(int *)pix = color;
     return ;
 }
@@ -38,5 +52,5 @@ int trgb(int t, int r, int g, int b)
 
 int get_color(int x, int y, t_img *texture)
 {
-    return (*(int *) (texture->addr + (y * texture->size_l + x * (texture->bpp / 8))));
+    return (*(int *) (texture->address + (y * texture->width + x)));
 }

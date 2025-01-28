@@ -3,24 +3,27 @@
 static t_img    *check_side(t_mlx *mlx, int hit_vert_wall);
 static float    find_x_offset(t_mlx *mlx, int hit_vert_wall, t_img *texture);
 
-void texture_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
+//seg_fault in paint_wall
+void paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
 {
     t_img   *texture;
-    int     x_text;
+    float   x_text;
     float   y_step;
-    int     y_text;
+    float   y_text;
     int     color;
 
     texture = check_side(mlx, mlx->ray->hit_vert_wall);
-    x_text = (int) find_x_offset(mlx, mlx->ray->hit_vert_wall, texture);
-    y_step = (wall_bot_pxl - wall_top_pxl) / texture->height;
+    x_text = find_x_offset(mlx, mlx->ray->hit_vert_wall, texture);
+    y_step = texture->height / (wall_bot_pxl - wall_top_pxl);
     y_text = (int) (wall_top_pxl - (SCREEN_HIGHT / 2) + (mlx->ray->wall_height / 2)) * y_step;
     if (y_text < 0)
         y_text = 0;
     while (wall_top_pxl < wall_bot_pxl)
     {
-        color = get_color(x_text, y_text, texture);
-        put_pix_to_img(mlx, x_img, wall_top_pxl, color);
+        printf("TEST: coordinates x_text, y_text (limit %i) - %f,%f\n", texture->height, x_text, y_text);
+        printf("TEST: y_step - %f\n", y_step);
+        color = get_color((int) x_text, (int) y_text, texture);
+        put_pix_to_img(mlx, x_img, (int) wall_top_pxl, color);
         y_text += y_step;
         wall_top_pxl++;
     }
@@ -33,16 +36,16 @@ static t_img    *check_side(t_mlx *mlx, int hit_vert_wall)
     if (hit_vert_wall == 1)
     {
         if (mlx->ray->angle > M_PI_2 && mlx->ray->angle < 3 * M_PI_2)
-            return (mlx->textures->w_text);
+            return (&(mlx->image[WALL_WEST]));
         else
-            return (mlx->textures->e_text);
+            return (&(mlx->image[WALL_EAST]));
     }
     else
     {
         if (mlx->ray->angle > 0 && mlx->ray->angle < M_PI)
-            return (mlx->textures->s_text);
+            return (&(mlx->image[WALL_SOUTH]));
         else
-            return (mlx->textures->n_text);
+            return (&(mlx->image[WALL_NORTH]));
     }
 }
 
