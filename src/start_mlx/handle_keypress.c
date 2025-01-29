@@ -22,29 +22,29 @@ static void	update_angle_and_movement_vector(t_mlx *mlx, char move, double new_p
 	dist[Y] = sin(mlx->player[ANGLE]) * MOV_SPEED;
 	if (move == 'W')
 	{
-		new_pos[X] = mlx->player[X] + dist[X];
-		new_pos[Y] = mlx->player[Y] + dist[Y];
+		new_pos[X] = mlx->player[X_PIXEL] + dist[X];
+		new_pos[Y] = mlx->player[Y_PIXEL] + dist[Y];
 	}
 	else if (move == 'S')
 	{
-		new_pos[X] = mlx->player[X] - dist[X];
-		new_pos[Y] = mlx->player[Y] - dist[Y];
+		new_pos[X] = mlx->player[X_PIXEL] - dist[X];
+		new_pos[Y] = mlx->player[Y_PIXEL] - dist[Y];
 	}
 	else if (move == 'A')
 	{
-		new_pos[X] = mlx->player[X] - dist[Y];
-		new_pos[Y] = mlx->player[Y] + dist[X];
+		new_pos[X] = mlx->player[X_PIXEL] + dist[Y];
+		new_pos[Y] = mlx->player[Y_PIXEL] + dist[X];
 	}
 	else if (move == 'D') 
 	{
-		new_pos[X] = mlx->player[X] + dist[Y];
-		new_pos[Y] = mlx->player[Y] - dist[X];
+		new_pos[X] = mlx->player[X_PIXEL] - dist[Y];
+		new_pos[Y] = mlx->player[Y_PIXEL] - dist[X];
 	}
 	if (new_pos[Y] >= 0 && new_pos[X] >= 0
 		&& mlx->map->map[(int)new_pos[Y]][(int)new_pos[X]] != '1') 	// Collision detection
 	{
-		mlx->player[X] = new_pos[X];
-		mlx->player[Y] = new_pos[Y];
+		mlx->player[X_PIXEL] = new_pos[X];
+		mlx->player[Y_PIXEL] = new_pos[Y];
 	}
 }
 // Handles the player's movement based on the key pressed
@@ -67,8 +67,9 @@ static void players_movement(t_mlx *mlx, char move, double rotation_steps[2])
         update_angle_and_movement_vector(mlx, 'A', negative_one_offsets);
     else if (move == 'D') 
         update_angle_and_movement_vector(mlx, 'D', negative_one_offsets);
-    mlx->player[X_PIXEL] = (mlx->player[X] * 64);
-    mlx->player[Y_PIXEL] = (mlx->player[Y] * 64);
+    //mlx->player[X_PIXEL] = (mlx->player[X] * 64); //а мы разве не можем просто присвоить значение negative_one_offsets?
+    //mlx->player[Y_PIXEL] = (mlx->player[Y] * 64);
+	ray_casting(mlx); //нужно каждый раз запускать RC после шага, чтобы отрисовывать новый экран
 }
 
 // Handles the keypress event
@@ -95,12 +96,13 @@ int	handle_keypress(int keycode, t_mlx *mlx)
 		players_movement(mlx, 'L', rotation_offsets);
 	else if (keycode == RIGHT)
 		players_movement(mlx, 'R', rotation_offsets);
-	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
+	//mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	return (0);
 }
 
 int	handle_close(t_mlx *mlx)
 {
+	mlx_clear_window(mlx->mlx_ptr, mlx->win_ptr);
 	clean_mlx(mlx);
 	exit(0);
 	return (0);

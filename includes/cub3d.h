@@ -36,16 +36,22 @@
 # define SCREEN_HIGHT 500
 # define PLAYER_SIGHT 60
 # define CELL_SIZE 64
-# define MOV_SPEED 4
+# define MOV_SPEED 16
 # define ROT_SPEED 0.045
 
 # define ESCAPE 65307
-# define A_KEY 97
-# define S_KEY 115
-# define W_KEY 119
-# define D_KEY 100
+//# define A_KEY 97
+//# define S_KEY 115
+//# define W_KEY 119
+//# define D_KEY 100
 # define LEFT 65361
 # define RIGHT 65363
+
+//keys for Anna
+# define W_KEY 1731
+# define S_KEY 1753
+# define D_KEY 1751
+# define A_KEY 1734
 
 enum					e_player
 {

@@ -6,6 +6,7 @@ void    ray_casting(t_mlx *mlx)
     float   inter_vert;
     int     screen_line;
 
+    printf("TEST: RC launched\n");
     mlx->ray->angle = mlx->player[ANGLE] - (mlx->player[SIGHT] / 2);
     screen_line = 0;
     render_floor_ceiling(mlx);
