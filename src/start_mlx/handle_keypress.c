@@ -41,7 +41,7 @@ static void	update_angle_and_movement_vector(t_mlx *mlx, char move, double new_p
 		new_pos[Y] = mlx->player[Y_PIXEL] - dist[X];
 	}
 	if (new_pos[Y] >= 0 && new_pos[X] >= 0
-		&& mlx->map->map[(int)new_pos[Y]][(int)new_pos[X]] != '1') 	// Collision detection
+		&& mlx->map->map[(int)new_pos[Y] / 64][(int)new_pos[X] / 64] != '1') 	// Collision detection
 	{
 		mlx->player[X_PIXEL] = new_pos[X];
 		mlx->player[Y_PIXEL] = new_pos[Y];
@@ -66,7 +66,9 @@ static void players_movement(t_mlx *mlx, char move, double rotation_steps[2])
     else if (move == 'A')
         update_angle_and_movement_vector(mlx, 'A', negative_one_offsets);
     else if (move == 'D') 
+	{
         update_angle_and_movement_vector(mlx, 'D', negative_one_offsets);
+	}
     //mlx->player[X_PIXEL] = (mlx->player[X] * 64); //а мы разве не можем просто присвоить значение negative_one_offsets?
     //mlx->player[Y_PIXEL] = (mlx->player[Y] * 64);
 	ray_casting(mlx); //нужно каждый раз запускать RC после шага, чтобы отрисовывать новый экран
