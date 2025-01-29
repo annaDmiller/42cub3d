@@ -14,14 +14,12 @@ void paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
 
     texture = check_side(mlx, mlx->ray->hit_vert_wall);
     x_text = find_x_offset(mlx, mlx->ray->hit_vert_wall, texture);
-    y_step = texture->height / (wall_bot_pxl - wall_top_pxl);
+    y_step = texture->height / (mlx->ray->wall_height);
     y_text = (int) (wall_top_pxl - (SCREEN_HIGHT / 2) + (mlx->ray->wall_height / 2)) * y_step;
     if (y_text < 0)
         y_text = 0;
     while (wall_top_pxl < wall_bot_pxl)
     {
-        printf("TEST: coordinates x_text, y_text (limit %i) - %f,%f\n", texture->height, x_text, y_text);
-        printf("TEST: y_step - %f\n", y_step);
         color = get_color((int) x_text, (int) y_text, texture);
         put_pix_to_img(mlx, x_img, (int) wall_top_pxl, color);
         y_text += y_step;

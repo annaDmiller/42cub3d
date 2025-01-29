@@ -47,7 +47,7 @@ void    put_pix_to_img(t_mlx *mlx, int x, int y, int color)
 
 int trgb(int t, int r, int g, int b)
 {
-    return (t << 24 | r << 16 | g << 6 | b);
+    return (t << 24 | r << 16 | g << 8 | b);
 }
 
 int get_color(int x, int y, t_img *texture)
