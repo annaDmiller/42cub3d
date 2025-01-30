@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
+static int	check_wall(t_mlx *mlx, double new_pos[2]);
 
 // Updates the player's angle and movement vector based on the key pressed
 
@@ -40,12 +41,33 @@ static void	update_angle_and_movement_vector(t_mlx *mlx, char move, double new_p
 		new_pos[X] = mlx->player[X_PIXEL] - dist[Y];
 		new_pos[Y] = mlx->player[Y_PIXEL] - dist[X];
 	}
-	if (new_pos[Y] >= 0 && new_pos[X] >= 0
-		&& mlx->map->map[(int)new_pos[Y] / 64][(int)new_pos[X] / 64] != '1') 	// Collision detection
+	if (new_pos[Y] < 0 || new_pos[X] < 0
+		|| new_pos[Y] / CELL_SIZE > mlx->map->map_height
+		|| new_pos[X] / CELL_SIZE > mlx->map->map_width)
+		return ;
+	if (check_wall(mlx, new_pos))
 	{
 		mlx->player[X_PIXEL] = new_pos[X];
 		mlx->player[Y_PIXEL] = new_pos[Y];
 	}
+	return ;
+}
+
+static int	check_wall(t_mlx *mlx, double new_pos[2])
+{
+	if (mlx->map->map[(int)new_pos[Y] / CELL_SIZE][(int)new_pos[X] / CELL_SIZE] == '1')
+		return (0);
+	if (mlx->map->map[(int) mlx->player[Y_PIXEL] / CELL_SIZE][(int)new_pos[X] / CELL_SIZE] == '1')
+		return(0);
+	if (mlx->map->map[(int)new_pos[Y] / CELL_SIZE][(int)mlx->player[X_PIXEL] / CELL_SIZE] == '1')
+		return (0);
+	if (mlx->player[Y_PIXEL] - new_pos[Y] > 0
+		&& mlx->map->map[((int)new_pos[Y] - 1) / CELL_SIZE][(int)new_pos[X] / CELL_SIZE] == '1')
+		return (0);
+	if (mlx->player[X_PIXEL] - new_pos[X] > 0
+		&& mlx->map->map[(int)new_pos[Y] / CELL_SIZE][((int)new_pos[X] - 1) / CELL_SIZE] == '1')
+		return (0);
+	return (1);
 }
 // Handles the player's movement based on the key pressed
 // rotation_steps[0] is for turning right, 
