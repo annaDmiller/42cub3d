@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:52:05 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/21 15:55:25 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/31 16:17:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,14 +26,6 @@ void	check_texture_open(t_data **data)
 	check_if_texture_path_is_directory(data, fd, mlx);
 	set_tab_with_zero(fd, 4, 0);
 	open_textures(data, fd, mlx);
-	if (check_texture_size((*data)->north_texture, mlx))
-		clean_mlx_data_fd_exit(data, mlx, fd, "North texture size is not 64 x 64\n");
-	if (check_texture_size((*data)->south_texture, mlx))
-		clean_mlx_data_fd_exit(data, mlx, fd, "South texture size is not 64 x 64\n");
-	if (check_texture_size((*data)->west_texture, mlx))
-		clean_mlx_data_fd_exit(data, mlx, fd, "West texture size is not 64 x 64\n");
-	if (check_texture_size((*data)->east_texture, mlx))
-		clean_mlx_data_fd_exit(data, mlx, fd, "East texture size is not 64 x 64\n");
 	close_all_textures(fd);
 	mlx_destroy_display(mlx);
 }

@@ -1,10 +1,10 @@
-NO ./textures/wood.xpm
-SO ./textures/purplestone.xpm
-WE ./textures/pillar.xpm
-EA ./textures/wall_2.xpm
+NO ./textures/gem9.xpm
+SO ./textures/cloth1.xpm
+WE ./textures/animal2.xpm
+EA ./textures/cloth2.xpm
 
-F 220,100,0
-C 225,30,0
+F 176,196,222
+C 219,112,147
 
 
         1111111111111111111111111

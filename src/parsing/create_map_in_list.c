@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:07:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:35:36 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/31 16:55:12 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,17 +50,19 @@ int	set_line_type(char *str)
 {
 	int	type;
 
-	type = 0;
-	if (str[0] == '\0')
+	while (*str == ' ')
+		str++;
+	if (*str == '\0')
 		type = EMPTY_LINE;
-	else if (is_direction_char(str[0]))
+	else if (is_direction_char(*str))
 		type = TEXTURE_LINE;
-	else if (is_color_char(str[0]))
+	else if (is_color_char(*str))
 		type = COLOR_LINE;
-	else if (str[0] == ' ' || str[0] == '0' || str[0] == '1')
+	else if (*str == '0' || *str == '1' || *str == ' ') 
 		type = MAP_LINE;
 	else
 		type = ERROR_LINE;
+
 	return (type);
 }
 

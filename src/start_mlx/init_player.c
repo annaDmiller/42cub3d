@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 12:54:00 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/24 14:23:10 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/01/31 12:03:41 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,9 +67,9 @@ bool	is_player(char c, double *angle)
 	if (c == 'N' || c == 'S' || c == 'E' || c == 'W')
 	{
 		if (c == 'N')
-			*angle = 3 * M_PI_2; // = 90 degree
+			*angle = 3 * M_PI_2; // = 270 degree
 		else if (c == 'S')
-			*angle = M_PI_2; // = 270 degree
+			*angle = M_PI_2; // = 90 degree
 		else if (c == 'W')
 			*angle = M_PI; // = 180 degree
 		else if (c == 'E')
