@@ -13,6 +13,7 @@
 #include "../../includes/cub3d.h"
 
 static int	check_if_wall_hit(float x, float y, t_mlx *mlx);
+static int	check_quarter(double angle, float *step, float *cord, int is_x);
 
 float	find_horiz_intersection(t_mlx *mlx, double angle)
 {
@@ -24,15 +25,8 @@ float	find_horiz_intersection(t_mlx *mlx, double angle)
 
 	y_step = CELL_SIZE;
 	x_step = CELL_SIZE / tan(angle);
-	corrector = 1;
 	inter1_y = floor((float)mlx->player[Y_PIXEL] / CELL_SIZE) * CELL_SIZE;
-	if (angle > 0 && angle < M_PI)
-	{
-		inter1_y += CELL_SIZE;
-		corrector *= -1;
-	}
-	else
-		y_step *= -1;
+	corrector = check_quarter(angle, &y_step, &inter1_y, 0);
 	inter1_x = (float)mlx->player[X_PIXEL] + (inter1_y
 			- (float)mlx->player[Y_PIXEL]) / tan(angle);
 	if ((x_step > 0 && angle > M_PI_2 && angle < 3 * M_PI_2) || (x_step < 0
@@ -57,15 +51,8 @@ float	find_vert_intersection(t_mlx *mlx, double angle)
 
 	x_step = CELL_SIZE;
 	y_step = CELL_SIZE * tan(angle);
-	corrector = 1;
 	inter1_x = floor((float)mlx->player[X_PIXEL] / CELL_SIZE) * CELL_SIZE;
-	if (angle < M_PI_2 || angle > 3 * M_PI_2)
-	{
-		inter1_x += CELL_SIZE;
-		corrector *= -1;
-	}
-	else
-		x_step *= -1;
+	corrector = check_quarter(angle, &x_step, &inter1_x, 1);
 	inter1_y = (float)mlx->player[Y_PIXEL] + (inter1_x
 			- (float)mlx->player[X_PIXEL]) * tan(angle);
 	if ((y_step > 0 && angle > M_PI) || (y_step < 0 && angle < M_PI))
@@ -95,4 +82,29 @@ static int	check_if_wall_hit(float x, float y, t_mlx *mlx)
 		&& mlx->map->map[ind_y][ind_x] == '1')
 		return (1);
 	return (0);
+}
+
+static int	check_quarter(double angle, float *step, float *cord, int is_x)
+{
+	if (is_x == 0)
+	{
+		if (angle > 0 && angle < M_PI)
+		{
+			*cord += CELL_SIZE;
+			return (-1);
+		}
+		else
+			*step *= -1;
+	}
+	else
+	{
+		if (angle < M_PI_2 || angle > 3 * M_PI_2)
+		{
+			*cord += CELL_SIZE;
+			return (-1);
+		}
+		else
+			*step *= -1;
+	}
+	return (1);
 }

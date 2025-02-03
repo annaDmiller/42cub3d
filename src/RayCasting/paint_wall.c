@@ -15,7 +15,7 @@
 static t_img	*check_side(t_mlx *mlx, int hit_vert_wall);
 static float	find_x_offset(t_mlx *mlx, int hit_vert_wall, t_img *texture);
 
-void	paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
+void	paint_wall(t_mlx *mlx, int x_img, float bot_pxl, float top_pxl)
 {
 	t_img	*texture;
 	float	x_text;
@@ -26,16 +26,16 @@ void	paint_wall(t_mlx *mlx, int x_img, float wall_bot_pxl, float wall_top_pxl)
 	texture = check_side(mlx, mlx->ray->hit_vert_wall);
 	x_text = find_x_offset(mlx, mlx->ray->hit_vert_wall, texture);
 	y_step = texture->height / (mlx->ray->wall_height);
-	y_text = (int)(wall_top_pxl - (SCREEN_HIGHT / 2) + ((mlx->ray->wall_height
+	y_text = (int)(top_pxl - (SCREEN_HIGHT / 2) + ((mlx->ray->wall_height
 					/ 2)) * y_step);
 	if (y_text < 0)
 		y_text = 0;
-	while (wall_top_pxl < wall_bot_pxl)
+	while (top_pxl < bot_pxl)
 	{
 		color = get_color((int)x_text, (int)y_text, texture);
-		put_pix_to_img(mlx, x_img, (int)wall_top_pxl, color);
+		put_pix_to_img(mlx, x_img, (int)top_pxl, color);
 		y_text += y_step;
-		wall_top_pxl++;
+		top_pxl++;
 	}
 	return ;
 }
@@ -61,7 +61,9 @@ static t_img	*check_side(t_mlx *mlx, int hit_vert_wall)
 
 static float	find_x_offset(t_mlx *mlx, int hit_vert_wall, t_img *texture)
 {
-    if (hit_vert_wall == 1)
-        return (fmodf(mlx->ray->wall_hit_y * (texture->width / CELL_SIZE), texture->width));
-    return (fmodf(mlx->ray->wall_hit_x * (texture->width / CELL_SIZE), texture->width));
+	if (hit_vert_wall == 1)
+		return (fmodf(mlx->ray->wall_hit_y * (texture->width / CELL_SIZE),
+				texture->width));
+	return (fmodf(mlx->ray->wall_hit_x * (texture->width / CELL_SIZE),
+			texture->width));
 }
