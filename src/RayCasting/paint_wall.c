@@ -26,7 +26,7 @@ void	paint_wall(t_mlx *mlx, int x_img, float bot_pxl, float top_pxl)
 	texture = check_side(mlx, mlx->ray->hit_vert_wall);
 	x_text = find_x_offset(mlx, mlx->ray->hit_vert_wall, texture);
 	y_step = texture->height / (mlx->ray->wall_height);
-	y_text = (int)(top_pxl - (SCREEN_HIGHT / 2) + ((mlx->ray->wall_height
+	y_text = ((top_pxl - (SCREEN_HIGHT / 2) + (mlx->ray->wall_height
 					/ 2)) * y_step);
 	if (y_text < 0)
 		y_text = 0;
