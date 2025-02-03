@@ -133,5 +133,6 @@ char	*remove_spaces_and_tabs(char *str)
 		i++;
 	}
 	result[j] = '\0';
+	//free(str); <- я думаю, тут надо добавить эту строчку. Так как иначе ты теряешь аллоцированную строку
 	return (result);
 }
