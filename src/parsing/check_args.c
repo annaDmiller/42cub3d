@@ -6,14 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:02:13 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/21 12:01:38 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:33:32 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// Validate the number and type of args passed to the program
-// Return (nothing);
 
 void	check_argc(int argc, char **argv)
 {
@@ -28,14 +25,10 @@ void	check_argc(int argc, char **argv)
 		print_error("Too many arguments\n");
 }
 
-// Verifies if the given file has the correct .cub/.xpm extension
-// Return: (0) if the extension matches
-//         (1) if the extension does not match
-
 int	check_extension(char *filename, char *extension)
 {
-	int len;
-	int extension_len;
+	int	len;
+	int	extension_len;
 
 	len = ft_strlen(filename);
 	extension_len = ft_strlen(extension);

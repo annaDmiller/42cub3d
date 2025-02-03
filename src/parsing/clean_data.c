@@ -1,23 +1,35 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   check_map_close_fd.c                               :+:      :+:    :+:   */
+/*   clean_data.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 12:14:37 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 17:51:14 by okapshai         ###   ########.fr       */
+/*   Created: 2025/02/03 17:30:07 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/03 17:33:10 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-int	check_map_close_fd(int fd, t_list *list)
+void	clean_data(t_data **data)
 {
-	int	return_value;
+	if (!*data)
+		return ;
+	if ((*data)->map)
+		free_array((*data)->map);
+	free((*data)->north_texture);
+	free((*data)->south_texture);
+	free((*data)->west_texture);
+	free((*data)->east_texture);
+	free(*data);
+}
 
-	return_value = close(fd);
-	if (return_value == -1)
-		clean_list(&list, "Error closing the map file\n");
-	return (EXIT_SUCCESS);
+void	clean_all_exit(t_data **data, t_list **list, char *msg)
+{
+	if (*list)
+		ft_lst_clear(list);
+	if (data)
+		clean_data(data);
+	print_error(msg);
 }

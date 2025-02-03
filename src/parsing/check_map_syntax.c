@@ -6,14 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 12:09:29 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:26:23 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// Validates the syntax of each line in the list based on its type (ex: map,
-//	texture, color).
 
 void	check_map_syntax(t_list **list)
 {
@@ -29,7 +26,8 @@ void	check_map_syntax(t_list **list)
 		if (tmp->type == ERROR_LINE)
 			clean_list_with_syntax_error(list, i, tmp->line,
 				"Syntax error in map file\n");
-		else if (tmp->type == TEXTURE_LINE && check_directions_syntax(tmp->line))
+		else if (tmp->type == TEXTURE_LINE
+			&& check_directions_syntax(tmp->line))
 			clean_list_with_syntax_error(list, i, tmp->line,
 				"Syntax error in texture line\n");
 		else if (tmp->type == COLOR_LINE && check_color_syntax(tmp->line))
@@ -43,8 +41,6 @@ void	check_map_syntax(t_list **list)
 	}
 	check_last_element(list);
 }
-
-// Ensures the last element in the linked list is a valid map line
 
 void	check_last_element(t_list **list)
 {
@@ -63,10 +59,6 @@ void	check_last_element(t_list **list)
 			"Last line should be a map line\n");
 }
 
-// The function compares the first three chars of str against the directions:
-// "NO " / "SO " / "WE " /"EA "
-// Return (0) if OK, (1) if failed
-
 int	check_directions_syntax(char *str)
 {
 	while (*str == ' ')
@@ -77,37 +69,31 @@ int	check_directions_syntax(char *str)
 	return (EXIT_FAILURE);
 }
 
-// Check if the str is for floor or ceiling colors
-// Return (0) if OK, (1) if failed
-
 int	check_color_syntax(char *str)
 {
 	while (*str == ' ')
 		str++;
-    if ((ft_strncmp(str, "F ", 2) != 0) && (ft_strncmp(str, "C ", 2) != 0))
-        return (EXIT_FAILURE);
-    str++;
-    while (*str)
-    {
-        if (!ft_isdigit(*str) && *str != ' ' && *str != ',')
-            return (EXIT_FAILURE);
-        str++;
-    }
-    return (EXIT_SUCCESS);
+	if ((ft_strncmp(str, "F ", 2) != 0) && (ft_strncmp(str, "C ", 2) != 0))
+		return (EXIT_FAILURE);
+	str++;
+	while (*str)
+	{
+		if (!ft_isdigit(*str) && *str != ' ' && *str != ',')
+			return (EXIT_FAILURE);
+		str++;
+	}
+	return (EXIT_SUCCESS);
 }
-
-// Check if string contains only valid map characters (0, 1, ' '(outside), '\0', 'N',
-//	'S', 'W', 'E')
-// Return (0) if OK, (1) if failed
 
 int	check_map_chars(char *str)
 {
-	int	i;
+	int i;
 
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != '\0' && !is_direction_char(str[i]))
+		if (str[i] != '1' && str[i] != '0' && str[i] != ' ' && str[i] != '\0'
+			&& !is_direction_char(str[i]))
 			return (EXIT_FAILURE);
 		i++;
 	}

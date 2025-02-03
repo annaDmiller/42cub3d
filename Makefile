@@ -6,7 +6,7 @@
 #    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/02/03 13:06:25 by okapshai         ###   ########.fr        #
+#    Updated: 2025/02/03 17:31:08 by okapshai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -37,12 +37,15 @@ SRCS_FILES          := \
 					parsing/check_map_is_closed.c\
 					parsing/count_players.c\
 					parsing/init_data.c\
+					parsing/fill_color.c\
+					parsing/fill_texture.c\
 					parsing/check_texture_extension.c\
 					parsing/get_map_size.c\
 					parsing/init_empty_map.c\
 					parsing/fill_map.c\
 					parsing/get_player_position.c\
 					parsing/check_texture_open.c\
+					parsing/clean_data.c\
 					start_mlx/start_mlx.c\
 					start_mlx/set_texture.c\
 					start_mlx/clean_mlx.c \

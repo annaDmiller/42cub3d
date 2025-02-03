@@ -6,21 +6,17 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 11:42:20 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/24 14:25:12 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 16:07:24 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
 
-// check player's starting position and direction within the map
-// y = row index
-// x = column index
-
 void	get_player_position(t_data **data)
 {
 	int	x;
 	int	y;
-	
+
 	y = 0;
 	while ((*data)->map[y])
 	{
@@ -45,16 +41,14 @@ int	direction_char(char c)
 	return (c == 'N' || c == 'S' || c == 'W' || c == 'E');
 }
 
-// Converts the player’s direction to a radian value for easier trigonometric functions
-
 void	convert_dir_to_radian(t_data **data, char player_pos)
 {
 	if (player_pos == 'N')
-		(*data)->player_direction_radian = M_PI / 2;  // = 90 degree
+		(*data)->player_direction_radian = M_PI / 2;
 	else if (player_pos == 'S')
-		(*data)->player_direction_radian = 3 * (M_PI / 2); // = 270 degree
+		(*data)->player_direction_radian = 3 * (M_PI / 2);
 	else if (player_pos == 'W')
-		(*data)->player_direction_radian = M_PI; // = 180 degree
+		(*data)->player_direction_radian = M_PI;
 	else if (player_pos == 'E')
-		(*data)->player_direction_radian = 0.0; // = 0 degree
+		(*data)->player_direction_radian = 0.0;
 }

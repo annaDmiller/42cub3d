@@ -3,17 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   start_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 14:08:15 by olly              #+#    #+#             */
-/*   Updated: 2025/01/28 17:17:01 by olly             ###   ########.fr       */
+/*   Updated: 2025/02/03 16:12:43 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// initializing the mlx window, setting up texture
-static int	mlx_init_struct(t_mlx *mlx);
 
 void	start_mlx(t_data *data)
 {
@@ -27,16 +24,17 @@ void	start_mlx(t_data *data)
 		return ;
 	if (mlx_init_struct(&mlx) == -1)
 		return ;
-	ray_casting(&mlx);	
+	ray_casting(&mlx);
 	mlx_hook(mlx.win_ptr, KeyPress, KeyPressMask, handle_keypress, &mlx);
-	mlx_hook(mlx.win_ptr, ClientMessage, StructureNotifyMask, handle_close, &mlx);
+	mlx_hook(mlx.win_ptr, ClientMessage, StructureNotifyMask, handle_close,
+		&mlx);
 	mlx_loop(mlx.mlx_ptr);
 	return ;
 }
 
-static int	mlx_init_struct(t_mlx *mlx)
+int	mlx_init_struct(t_mlx *mlx)
 {
-	mlx->ray = (t_ray *) malloc(sizeof(t_ray));
+	mlx->ray = (t_ray *)malloc(sizeof(t_ray));
 	if (!mlx->ray)
 		return (-1);
 	mlx->ray->angle = 0;
