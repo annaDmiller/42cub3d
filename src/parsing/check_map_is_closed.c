@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 13:02:42 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/24 16:48:17 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:31:57 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 void	check_map_is_closed(t_data **data)
 {
 	if (check_close_chars((*data)->map[0]))
-		clean_data_map_exit(data, 0, "Top: Map should be closed by char 1\n");
+		clean_data_map_exit(data, 0, "Map should be closed by char 1\n");
 	if (check_close_chars((*data)->map[(*data)->map_height - 1]))
-		clean_data_map_exit(data, ((*data)->map_height - 1), "Bottom: Map should be closed by char 1\n");
+		clean_data_map_exit(data, ((*data)->map_height - 1), "Map should be closed by char 1\n");
 	check_first_last_char(data);
 	check_inside_map(data);
 }

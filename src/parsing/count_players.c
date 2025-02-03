@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/24 14:30:27 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/24 14:32:56 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:33:13 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	count_players(t_data **data)
 		y++;
 	}
 	if (player == 0)
-		clean_data_map_exit(data, 0, "No player position found in the map.\n");
+		clean_data_map_exit(data, 0, "No player position found in the map\n");
 	if (player > 1)
 		clean_data_map_exit(data, 0, "Multiple player positions found in the map\n");
 }

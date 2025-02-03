@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:49:23 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/10 16:08:39 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:27:51 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,12 +82,12 @@ char	**ft_split(t_data **data, t_list **list, char *str, char c)
 		if (wcount < 3)
 		{
 			free(str);
-			clean_all_exit(data, list, "Missing RGB value, 3 needed\n");
+			clean_all_exit(data, list, "Missing RGB value: need 3 parameters\n");
 		}
 		if (wcount > 3)
 		{
 			free(str);
-			clean_all_exit(data, list, "Too much RGB values, 3 needed\n");
+			clean_all_exit(data, list, "Too much RGB values:: need 3 parameters\n");
 		}
 	}
 	words = (char **)malloc(sizeof(char *) * (wcount + 1));

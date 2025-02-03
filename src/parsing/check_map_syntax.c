@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/31 17:04:14 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:09:29 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,7 @@ void	check_map_syntax(t_list **list)
 		if (tmp->type == ERROR_LINE)
 			clean_list_with_syntax_error(list, i, tmp->line,
 				"Syntax error in map file\n");
-		else if (tmp->type == TEXTURE_LINE
-			&& check_directions_syntax(tmp->line))
+		else if (tmp->type == TEXTURE_LINE && check_directions_syntax(tmp->line))
 			clean_list_with_syntax_error(list, i, tmp->line,
 				"Syntax error in texture line\n");
 		else if (tmp->type == COLOR_LINE && check_color_syntax(tmp->line))
@@ -83,6 +82,8 @@ int	check_directions_syntax(char *str)
 
 int	check_color_syntax(char *str)
 {
+	while (*str == ' ')
+		str++;
     if ((ft_strncmp(str, "F ", 2) != 0) && (ft_strncmp(str, "C ", 2) != 0))
         return (EXIT_FAILURE);
     str++;

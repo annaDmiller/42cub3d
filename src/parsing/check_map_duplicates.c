@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:08:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:44:28 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 12:17:51 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,8 @@ void	set_tab_with_zero(int *tab, int tab_size, int value)
 void	check_directions_duplicates(t_list **list, int *duplicates, char *str,
 		int i)
 {
+	while (*str == ' ')
+		str++;
 	if (ft_strncmp(str, "NO ", 3) == 0)
 	{
 		duplicates[NORTH] += 1;
@@ -92,6 +94,8 @@ void	check_directions_duplicates(t_list **list, int *duplicates, char *str,
 
 void	check_color_duplicates(t_list **list, int *duplicates, char *str, int i)
 {
+	while (*str == ' ')
+		str++;
 	if (ft_strncmp(str, "F ", 2) == 0)
 	{
 		duplicates[FLOOR] += 1;

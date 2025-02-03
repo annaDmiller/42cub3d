@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/31 15:17:27 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 13:00:01 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <stdlib.h>
 # include <string.h>
 # include <unistd.h>
+#include <stddef.h>
 
 # define RED "\033[1;31m"
 # define GREEN "\033[1;32m"
@@ -271,8 +272,7 @@ int						ft_strncmp(char *s1, char *s2, unsigned int n);
 char					*ft_strndup(char *str, int n);
 int						get_next_line(int fd, char **line);
 int						ft_putstr_fd(char *s, int fd);
-void	print_data_structure(t_data *data);
-
+char					*ft_strtrim(const char *s1, const char *set);
 
 /*MLX_INIT*/
 
