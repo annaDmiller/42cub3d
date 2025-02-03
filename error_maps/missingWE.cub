@@ -1,6 +1,6 @@
 NO ./textures/wood.xpm
 SO ./textures/purplestone.xpm
-WE ./textures/pillar.xpm
+EA ./textures/pillar.xpm
 
 F 220,100,0
 C 225,30,0
