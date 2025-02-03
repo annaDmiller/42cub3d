@@ -28,6 +28,7 @@ void	check_texture_open(t_data **data)
 	open_textures(data, fd, mlx);
 	close_all_textures(fd);
 	mlx_destroy_display(mlx);
+	free(mlx);
 }
 
 // Opens each texture path in directory-check mode

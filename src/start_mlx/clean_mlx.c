@@ -19,7 +19,9 @@ void	clean_mlx(t_mlx *mlx)
 		mlx_destroy_window(mlx->mlx_ptr, mlx->win_ptr);
 	if (mlx->mlx_ptr)
 		mlx_destroy_display(mlx->mlx_ptr);
+	free(mlx->ray);
 	clean_data(&mlx->map);
+	free(mlx->mlx_ptr);
 }
 
 void	destroy_texture(t_mlx *mlx)
