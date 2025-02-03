@@ -6,14 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:08:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/07 17:44:28 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:55:13 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// Checks the list for duplicate direction and color lines :
-// dup[NORTH], dup[SOUTH], dup[WEST], dup[EAST], dup[FLOOR], dup[CEILING]
 
 void	check_map_duplicates(t_list **list)
 {
@@ -36,9 +33,6 @@ void	check_map_duplicates(t_list **list)
 	check_missing_lines(list, duplicates);
 }
 
-// Clears the dup array, setting all its elements to 0
-// Retunr (nothing)
-
 void	set_tab_with_zero(int *tab, int tab_size, int value)
 {
 	int	i;
@@ -51,47 +45,53 @@ void	set_tab_with_zero(int *tab, int tab_size, int value)
 	}
 }
 
-// Checks ifor any duplicate direction lines in the map
-// Retunr (nothing)
-
-void	check_directions_duplicates(t_list **list, int *duplicates, char *str,
-		int i)
+void	increment_texture_count(int *duplicates, int dir)
 {
-	if (ft_strncmp(str, "NO ", 3) == 0)
+	duplicates[dir] += 1;
+}
+
+void	handle_texture_error(t_list **list, int i, char *str, int count)
+{
+	if (count > 1)
 	{
-		duplicates[NORTH] += 1;
-		if (duplicates[NORTH] > 1)
+		if (ft_strncmp(str, "NO ", 3) == 0)
 			clean_list_with_syntax_error(list, i, str,
 				"Duplicates of North textures\n");
-	}
-	else if (ft_strncmp(str, "SO ", 3) == 0)
-	{
-		duplicates[SOUTH] += 1;
-		if (duplicates[SOUTH] > 1)
+		else if (ft_strncmp(str, "SO ", 3) == 0)
 			clean_list_with_syntax_error(list, i, str,
 				"Duplicates of South textures\n");
-	}
-	else if (ft_strncmp(str, "WE ", 3) == 0)
-	{
-		duplicates[WEST] += 1;
-		if (duplicates[WEST] > 1)
+		else if (ft_strncmp(str, "WE ", 3) == 0)
 			clean_list_with_syntax_error(list, i, str,
 				"Duplicates of West textures\n");
-	}
-	else if (ft_strncmp(str, "EA ", 3) == 0)
-	{
-		duplicates[EAST] += 1;
-		if (duplicates[EAST] > 1)
+		else if (ft_strncmp(str, "EA ", 3) == 0)
 			clean_list_with_syntax_error(list, i, str,
 				"Duplicates of East textures\n");
 	}
 }
 
-// Checks for any duplicate floor or ceiling color lines in the map
-// Return (nothing)
+void	check_directions_duplicates(t_list **list, int *duplicates, char *str,
+		int i)
+{
+	while (*str == ' ')
+		str++;
+	if (ft_strncmp(str, "NO ", 3) == 0)
+		increment_texture_count(duplicates, NORTH);
+	else if (ft_strncmp(str, "SO ", 3) == 0)
+		increment_texture_count(duplicates, SOUTH);
+	else if (ft_strncmp(str, "WE ", 3) == 0)
+		increment_texture_count(duplicates, WEST);
+	else if (ft_strncmp(str, "EA ", 3) == 0)
+		increment_texture_count(duplicates, EAST);
+	handle_texture_error(list, i, str, duplicates[NORTH]);
+	handle_texture_error(list, i, str, duplicates[SOUTH]);
+	handle_texture_error(list, i, str, duplicates[WEST]);
+	handle_texture_error(list, i, str, duplicates[EAST]);
+}
 
 void	check_color_duplicates(t_list **list, int *duplicates, char *str, int i)
 {
+	while (*str == ' ')
+		str++;
 	if (ft_strncmp(str, "F ", 2) == 0)
 	{
 		duplicates[FLOOR] += 1;
@@ -107,9 +107,6 @@ void	check_color_duplicates(t_list **list, int *duplicates, char *str, int i)
 				"Duplicates of ceiling colors\n");
 	}
 }
-
-// Check if all required lines are present
-// Return (nothing)
 
 void	check_missing_lines(t_list **list, int *duplicates)
 {

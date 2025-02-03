@@ -1,7 +1,7 @@
-NO ./text_1/wood.xpm
-SO ./text_1/purplestone.xpm
-WE ./text_1/pillar.xpm
-EA ./text_1/wall_2.xpm
+NO ./textures/wood.xpm
+SO ./textures/purplestone.xpm
+WE ./textures/pillar.xpm
+EA ./textures/wall_2.xpm
 
 F 0,0,255
 C 255,255,255

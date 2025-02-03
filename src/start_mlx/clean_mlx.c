@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   clean_mlx.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: olly <olly@student.42.fr>                  +#+  +:+       +#+        */
+/*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 16:57:15 by olly              #+#    #+#             */
-/*   Updated: 2025/01/26 18:26:33 by olly             ###   ########.fr       */
+/*   Updated: 2025/02/03 16:35:08 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,4 +36,11 @@ void	destroy_texture(t_mlx *mlx)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_WEST].img);
 	if (mlx->image[WALL_EAST].img)
 		mlx_destroy_image(mlx->mlx_ptr, mlx->image[WALL_EAST].img);
+}
+
+void	clean_mlx_data_fd_exit(t_data **data, void *mlx, int *fd, char *msg)
+{
+	mlx_destroy_display(mlx);
+	close_all_textures(fd);
+	clean_data_map_exit(data, 0, msg);
 }

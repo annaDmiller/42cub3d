@@ -6,15 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:54:38 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/21 13:23:53 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/03 17:31:35 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/cub3d.h"
-
-// Trying to open file as a directory: if succes, print exit error
-// Trying to open file normally: if failed, print exit error
-// Return (nothing), exit if failed
 
 void	check_map_open(char *filename, int *fd)
 {
@@ -27,4 +23,11 @@ void	check_map_open(char *filename, int *fd)
 	*fd = open(filename, O_RDONLY);
 	if (*fd == -1)
 		print_error("Can not open map file\n");
+}
+
+void	print_error(char *message)
+{
+	write(2, "Error\n", 6);
+	ft_putstr_fd(message, STDERR_FILENO);
+	exit(EXIT_FAILURE);
 }
