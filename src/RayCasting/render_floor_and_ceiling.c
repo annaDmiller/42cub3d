@@ -14,8 +14,8 @@
 
 void	render_floor_ceiling(t_mlx *mlx)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	while (x < SCREEN_WIDTH)

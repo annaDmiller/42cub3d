@@ -26,6 +26,7 @@ void	check_texture_open(t_data **data)
 	open_textures(data, fd, mlx);
 	close_all_textures(fd);
 	mlx_destroy_display(mlx);
+	free(mlx);
 }
 
 void	check_if_texture_path_is_directory(t_data **data, int *fd, void *mlx)
