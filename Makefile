@@ -6,7 +6,7 @@
 #    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/02/04 13:11:18 by okapshai         ###   ########.fr        #
+#    Updated: 2025/02/04 13:37:05 by okapshai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -53,6 +53,7 @@ SRCS_FILES          := \
 					start_mlx/clean_mlx.c \
 					start_mlx/init_player.c \
 					start_mlx/handle_keypress.c\
+					start_mlx/handle_movement.c\
 					RayCasting/draw_wall.c \
 					RayCasting/find_intersection.c \
 					RayCasting/main_raycasting.c \

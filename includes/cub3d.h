@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/04 13:16:03 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:47:53 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -191,7 +191,11 @@ void				check_last_element(t_list **list);
 int					check_directions_syntax(char *str);
 int					check_color_syntax(char *str);
 int					check_map_chars(char *str);
-
+int					check_wall(t_mlx *mlx, double new_pos[2]);
+void				calculate_movement_vector(t_mlx *mlx, double dist[2]);
+void				set_new_position(t_mlx *mlx, char move, double new_pos[2],
+						double dist[2]);
+void				players_movement(t_mlx *mlx, char move);
 void				check_map_duplicates(t_list **list);
 void				set_tab_with_zero(int *tab, int tab_size, int value);
 void				check_directions_duplicates(t_list **list, int *duplicates,

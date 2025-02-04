@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:54:17 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 17:55:49 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:38:27 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ void	check_value_limits(t_data **data, t_list **list, char **array,
 			if (len > 3)
 				clean_all_exit(data, list, "RGB value is too long\n");
 			if (nbr > 255)
-				clean_all_exit(data, list, "RGB value is too big, choose from 0-255 range\n");
+				clean_all_exit(data, list, "RGB value is too big\n");
 		}
 		i++;
 	}
@@ -133,6 +133,6 @@ char	*remove_spaces_and_tabs(char *str)
 		i++;
 	}
 	result[j] = '\0';
-	//free(str); <- я думаю, тут надо добавить эту строчку. Так как иначе ты теряешь аллоцированную строку
+	free(str);
 	return (result);
 }
