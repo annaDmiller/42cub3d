@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:37:11 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 16:51:05 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/04 12:58:49 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,9 +61,7 @@ static t_img	*check_side(t_mlx *mlx, int hit_vert_wall)
 
 static float	find_x_offset(t_mlx *mlx, int hit_vert_wall, t_img *texture)
 {
-	if (hit_vert_wall == 1)
-		return (fmodf(mlx->ray->wall_hit_y * (texture->width / CELL_SIZE),
-				CELL_SIZE));
-	return (fmodf(mlx->ray->wall_hit_x * (texture->width / CELL_SIZE),
-			CELL_SIZE));
+    if (hit_vert_wall == 1)
+        return (fmodf(mlx->ray->wall_hit_y * (texture->width / CELL_SIZE), texture->width));
+    return (fmodf(mlx->ray->wall_hit_x * (texture->width / CELL_SIZE), texture->width));
 }
