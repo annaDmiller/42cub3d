@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 17:27:36 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:16:03 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,7 @@ int					is_color_char(char c);
 void				clean_list_with_syntax_error(t_list **list, int i, char *line, char *message);
 void				clean_list(t_list **list, char *message);
 void				check_map_open(char *filename, int *fd);
-
+void				increment_texture_count(int *duplicates, int dir);
 void				check_map_syntax(t_list **list);
 void				check_last_element(t_list **list);
 int					check_directions_syntax(char *str);

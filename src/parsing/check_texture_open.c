@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:52:05 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 16:33:48 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:10:12 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,42 +41,6 @@ void	check_if_texture_path_is_directory(t_data **data, int *fd, void *mlx)
 	}
 }
 
-void	close_texture_files(t_data **data, int *fd)
-{
-	if (fd[NORTH] != -1)
-	{
-		close_all_textures(fd);
-		clean_data_map_exit(data, 0, "North texture is directory\n");
-	}
-	if (fd[SOUTH] != -1)
-	{
-		close_all_textures(fd);
-		clean_data_map_exit(data, 0, "South texture is directory\n");
-	}
-	if (fd[WEST] != -1)
-	{
-		close_all_textures(fd);
-		clean_data_map_exit(data, 0, "West texture is directory\n");
-	}
-	if (fd[EAST] != -1)
-	{
-		close_all_textures(fd);
-		clean_data_map_exit(data, 0, "East texture is directory\n");
-	}
-}
-
-void	close_all_textures(int *fd)
-{
-	if (fd[NORTH] != -1)
-		close(fd[NORTH]);
-	if (fd[SOUTH] != -1)
-		close(fd[SOUTH]);
-	if (fd[WEST] != -1)
-		close(fd[WEST]);
-	if (fd[EAST] != -1)
-		close(fd[EAST]);
-}
-
 int	check_texture_size(char *path, void *mlx)
 {
 	void	*image;
@@ -107,17 +71,4 @@ void	open_textures(t_data **data, int *fd, void *mlx)
 		mlx_destroy_display(mlx);
 		close_error_texture_file(data, fd);
 	}
-}
-
-void	close_error_texture_file(t_data **data, int *fd)
-{
-	close_all_textures(fd);
-	if (fd[NORTH] == -1)
-		clean_data_map_exit(data, 0, "Can't open North texture\n");
-	if (fd[SOUTH] == -1)
-		clean_data_map_exit(data, 0, "Can't open South texture\n");
-	if (fd[WEST] == -1)
-		clean_data_map_exit(data, 0, "Can't open West texture\n");
-	if (fd[EAST] == -1)
-		clean_data_map_exit(data, 0, "Can't open East texture\n");
 }

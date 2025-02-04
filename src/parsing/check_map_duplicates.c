@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:08:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 17:55:13 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:07:23 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,23 +31,6 @@ void	check_map_duplicates(t_list **list)
 		tmp = tmp->next;
 	}
 	check_missing_lines(list, duplicates);
-}
-
-void	set_tab_with_zero(int *tab, int tab_size, int value)
-{
-	int	i;
-
-	i = 0;
-	while (i < tab_size)
-	{
-		tab[i] = value;
-		i++;
-	}
-}
-
-void	increment_texture_count(int *duplicates, int dir)
-{
-	duplicates[dir] += 1;
 }
 
 void	handle_texture_error(t_list **list, int i, char *str, int count)

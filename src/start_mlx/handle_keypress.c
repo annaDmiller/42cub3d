@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 18:18:29 by olly              #+#    #+#             */
-/*   Updated: 2025/02/03 16:46:17 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/04 13:15:00 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static int	check_wall(t_mlx *mlx, double new_pos[2]);
 
-static void	update_angle_and_movement_vector(t_mlx *mlx, char move,
-		double new_pos[2])
+static void	calculate_movement_vector(t_mlx *mlx, double dist[2])
 {
-	double	dist[2];
-
 	dist[X] = cos(mlx->player[ANGLE]) * MOV_SPEED;
 	dist[Y] = sin(mlx->player[ANGLE]) * MOV_SPEED;
+}
+
+static void	set_new_position(t_mlx *mlx, char move, double new_pos[2], double dist[2])
+{
 	if (move == 'W')
 	{
 		new_pos[X] = mlx->player[X_PIXEL] + dist[X];
@@ -41,17 +42,37 @@ static void	update_angle_and_movement_vector(t_mlx *mlx, char move,
 		new_pos[X] = mlx->player[X_PIXEL] - dist[Y];
 		new_pos[Y] = mlx->player[Y_PIXEL] + dist[X];
 	}
-	if (new_pos[Y] < 0 || new_pos[X] < 0 || new_pos[Y]
-		/ CELL_SIZE > mlx->map->map_height || new_pos[X]
-		/ CELL_SIZE > mlx->map->map_width)
-		return ;
+}
+
+static int	is_valid_position(t_mlx *mlx, double new_pos[2])
+{
+	if (new_pos[Y] < 0 || new_pos[X] < 0 || 
+		new_pos[Y] / CELL_SIZE > mlx->map->map_height || 
+		new_pos[X] / CELL_SIZE > mlx->map->map_width)
+		return (0);
+	return (1);
+}
+
+static void	update_player_position(t_mlx *mlx, double new_pos[2])
+{
 	if (check_wall(mlx, new_pos))
 	{
 		mlx->player[X_PIXEL] = new_pos[X];
 		mlx->player[Y_PIXEL] = new_pos[Y];
 	}
-	return ;
 }
+
+static void	update_angle_and_movement_vector(t_mlx *mlx, char move, double new_pos[2])
+{
+	double	dist[2];
+
+	calculate_movement_vector(mlx, dist);
+	set_new_position(mlx, move, new_pos, dist);
+	if (!is_valid_position(mlx, new_pos))
+		return ;
+	update_player_position(mlx, new_pos);
+}
+
 
 static int	check_wall(t_mlx *mlx, double new_pos[2])
 {
