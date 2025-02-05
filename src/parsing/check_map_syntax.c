@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/04 13:37:48 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:18:00 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	check_last_element(t_list **list)
 
 int	check_directions_syntax(char *str)
 {
-	while (*str == ' ')
+	while (*str == ' ' || *str == '\t')
 		str++;
 	if (ft_strncmp(str, "NO ", 3) == 0 || ft_strncmp(str, "SO ", 3) == 0
 		|| ft_strncmp(str, "WE ", 3) == 0 || ft_strncmp(str, "EA ", 3) == 0)
@@ -75,14 +75,14 @@ int	check_directions_syntax(char *str)
 
 int	check_color_syntax(char *str)
 {
-	while (*str == ' ')
+	while (*str == ' ' || *str == '\t')
 		str++;
 	if ((ft_strncmp(str, "F ", 2) != 0) && (ft_strncmp(str, "C ", 2) != 0))
 		return (EXIT_FAILURE);
 	str++;
 	while (*str)
 	{
-		if (!ft_isdigit(*str) && *str != ' ' && *str != ',')
+		if (!ft_isdigit(*str) && *str != ' ' && *str != '\t' && *str != ',')
 			return (EXIT_FAILURE);
 		str++;
 	}

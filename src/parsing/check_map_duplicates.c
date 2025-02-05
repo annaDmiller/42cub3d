@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 17:08:01 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/04 13:07:23 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:17:53 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	handle_texture_error(t_list **list, int i, char *str, int count)
 void	check_directions_duplicates(t_list **list, int *duplicates, char *str,
 		int i)
 {
-	while (*str == ' ')
+	while (*str == ' ' || *str == '\t')
 		str++;
 	if (ft_strncmp(str, "NO ", 3) == 0)
 		increment_texture_count(duplicates, NORTH);
@@ -73,7 +73,7 @@ void	check_directions_duplicates(t_list **list, int *duplicates, char *str,
 
 void	check_color_duplicates(t_list **list, int *duplicates, char *str, int i)
 {
-	while (*str == ' ')
+	while (*str == ' ' || *str == '\t')
 		str++;
 	if (ft_strncmp(str, "F ", 2) == 0)
 	{
