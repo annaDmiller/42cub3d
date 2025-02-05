@@ -1,10 +1,10 @@
-NO ./textures/gem3.xpm
-SO ./textures/gem9.xpm
-WE ./textures/gem6.xpm
-EA ./textures/gem8.xpm
+     		    NO 		./textures/gem7.xpm
+SO              		./textures/gem9.xpm
+WE         ./textures/gem6.xpm				
+EA                              ./textures/gem8.xpm
 
-F 173,216,230
-C 30,144,255
+F 173,		216,230
+C 30,144,		255
 
  11111111111111111111111111
  11111100111111111100111111

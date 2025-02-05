@@ -1,10 +1,10 @@
-NO ./textures/gem9.xpm
-SO ./textures/cloth1.xpm
-WE ./textures/wall_2.xpm
+NO                              ./textures/gem9.xpm
+SO                      ./textures/cloth1.xpm
+WE      ./textures/wall_2.xpm
 EA ./textures/wood.xpm
 
-F 176,196,222
-C 219,112,147
+F 176,          196,            222
+C 219,                                              112,      147
 
 
         1111111111111111111111111

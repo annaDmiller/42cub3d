@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:52:51 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 17:51:25 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:18:15 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*trimmed_string(char *str, char *prefix)
 	if (!str || !prefix)
 		return (NULL);
 	str += ft_strlen(prefix);
-	while (*str == ' ')
+	while (*str == ' ' || *str == '\t')
 		str++;
 	len = ft_strlen(str);
 	while (len > 0 && str[len - 1] == ' ')

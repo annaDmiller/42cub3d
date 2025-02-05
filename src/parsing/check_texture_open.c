@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/21 15:52:05 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/04 15:37:16 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:05:19 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,8 +53,7 @@ void	open_textures(t_data **data, int *fd, void *mlx)
 	if (fd[NORTH] == -1 || fd[SOUTH] == -1 || fd[WEST] == -1 || fd[EAST] == -1)
 	{
 		mlx_destroy_display(mlx);
-		close_error_texture_file(data, fd);
 		free(mlx);
-		clean_data_map_exit(data, 0, "Can't open texture\n");
+		close_error_texture_file(data, fd);
 	}
 }

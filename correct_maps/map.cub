@@ -1,10 +1,10 @@
-NO ./textures/wood.xpm
-SO ./textures/purplestone.xpm
-WE ./textures/pillar.xpm
+NO              ./textures/wood.xpm             
+SO          ./textures/purplestone.xpm
+WE                                                ./textures/pillar.xpm
 EA ./textures/wall_2.xpm
 
-F 0,255, 0
-C 0,0,200
+F 0,                      255,                    0
+C 0,0,                      200
 
 1111111111111111
 1010000000000001

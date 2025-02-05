@@ -1,10 +1,12 @@
-NO textures/rose1.xpm
-SO textures/rose2.xpm
-WE textures/rose3.xpm
-EA textures/rose4.xpm
+        NO      textures/rose1.xpm
+F       164,            169,20
 
-F 164,169,20
-C 153,204,255
+EA textures/rose4.xpm
+                                        C 153,204,255
+
+
+SO textures/rose2.xpm           
+            WE textures/rose3.xpm
 
 111111111111111111111
 101000001000000000001

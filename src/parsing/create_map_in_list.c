@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 13:07:45 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 16:31:52 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/05 18:15:48 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ int	set_line_type(char *str)
 {
 	int	type;
 
-	while (*str == ' ')
+	while (*str == ' ' || *str == '\t' )
 		str++;
 	if (*str == '\0')
 		type = EMPTY_LINE;
