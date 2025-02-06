@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2025/01/10 13:02:42 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 16:01:35 by okapshai         ###   ########.fr       */
+/*   Created: 2025/02/06 17:00:57 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/06 18:46:15 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,67 +14,82 @@
 
 void	check_map_is_closed(t_data **data)
 {
-	if (check_close_chars((*data)->map[0]))
-		clean_data_map_exit(data, 0, "Map should be closed by char 1\n");
-	if (check_close_chars((*data)->map[(*data)->map_height - 1]))
-		clean_data_map_exit(data, ((*data)->map_height - 1),
-			"Map should be closed by char 1\n");
-	check_first_last_char(data);
-	check_inside_map(data);
+	char	**temp_map;
+	int		start_x;
+	int		start_y;
+
+	temp_map = copy_map(*data);
+	if (!temp_map)
+		clean_data_map_exit(data, 0, "Memory allocation failed\n");
+	find_start_point(temp_map, *data, &start_x, &start_y);
+	flood_fill(temp_map, start_x, start_y, *data);
+	free_map_copy(temp_map, (*data)->map_height);
 }
 
-int	check_close_chars(char *str)
+void	flood_fill(char **map, int x, int y, t_data *data)
 {
-	int	i;
-
-	i = 0;
-	while (str[i])
+	if (is_out_of_bounds(x, y, data))
 	{
-		if (str[i] != '1' && str[i] != ' ')
-			return (EXIT_FAILURE);
+		free_map_copy(map, data->map_height);
+		clean_data_map_exit(&data, y, "Map should be closed by char 1\n");
+	}
+	if (map[y][x] == ' ')
+	{
+		free_map_copy(map, data->map_height);
+		clean_data_map_exit(&data, y, "Map should be closed by char 1\n");
+	}
+	if (map[y][x] == '1' || map[y][x] == 'F')
+		return ;
+	map[y][x] = 'F';
+	flood_fill(map, x + 1, y, data);
+	flood_fill(map, x - 1, y, data);
+	flood_fill(map, x, y + 1, data);
+	flood_fill(map, x, y - 1, data);
+}
+
+char	**copy_map(t_data *data)
+{
+	char	**temp_map;
+	int		i;
+
+	temp_map = malloc((data->map_height + 1) * sizeof(char *));
+	if (!temp_map)
+		return (NULL);
+	i = 0;
+	while (i < data->map_height)
+	{
+		temp_map[i] = ft_strdup(data->map[i]);
+		if (!temp_map[i])
+		{
+			free_map_copy(temp_map, i);
+			return (NULL);
+		}
 		i++;
 	}
-	return (EXIT_SUCCESS);
+	temp_map[i] = NULL;
+	return (temp_map);
 }
 
-void	check_first_last_char(t_data **data)
-{
-	int		y;
-	char	**map;
-	int		width;
-
-	y = 1;
-	map = (*data)->map;
-	width = (*data)->map_width;
-	while (y < (*data)->map_height - 1)
-	{
-		if ((map[y][0] == '0' || map[y][width - 1] == '0') || (map[y][0] == 'N'
-				|| map[y][width - 1] == 'N') || (map[y][0] == 'S'
-				|| map[y][width - 1] == 'S') || (map[y][0] == 'E'
-				|| map[y][width - 1] == 'E') || (map[y][0] == 'W'
-				|| map[y][width - 1] == 'W'))
-			clean_data_map_exit(data, y, "Map should be closed by char 1\n");
-		y++;
-	}
-}
-
-void	check_inside_map(t_data **data)
+void	find_start_point(char **map, t_data *data, int *start_x, int *start_y)
 {
 	int	x;
 	int	y;
+	int	found;
 
-	y = 1;
-	while (y < (*data)->map_height)
+	y = 0;
+	found = 0;
+	while (y < data->map_height && !found)
 	{
-		x = 1;
-		while (x < (*data)->map_width)
+		x = 0;
+		while (x < data->map_width)
 		{
-			if ((*data)->map[y][x] == '0')
+			if (map[y][x] == 'N' || map[y][x] == 'S' || map[y][x] == 'E'
+				|| map[y][x] == 'W')
 			{
-				check_direction_side(data, x, y, NORTH);
-				check_direction_side(data, x, y, SOUTH);
-				check_direction_side(data, x, y, WEST);
-				check_direction_side(data, x, y, EAST);
+				*start_x = x;
+				*start_y = y;
+				found = 1;
+				break ;
 			}
 			x++;
 		}
@@ -82,14 +97,9 @@ void	check_inside_map(t_data **data)
 	}
 }
 
-void	check_direction_side(t_data **data, int x, int y, int direction)
+int	is_out_of_bounds(int x, int y, t_data *data)
 {
-	if (direction == NORTH && (*data)->map[y - 1][x] == ' ')
-		clean_data_map_exit(data, y, "Map should be closed by char 1\n");
-	if (direction == SOUTH && (*data)->map[y + 1][x] == ' ')
-		clean_data_map_exit(data, y, "Map should be closed by char 1\n");
-	if (direction == WEST && (*data)->map[y][x - 1] == ' ')
-		clean_data_map_exit(data, y, "Map should be closed by char 1\n");
-	if (direction == EAST && (*data)->map[y][x + 1] == ' ')
-		clean_data_map_exit(data, y, "Map should be closed by char 1\n");
+	if (x < 0 || y < 0 || x >= data->map_width || y >= data->map_height)
+		return (1);
+	return (0);
 }

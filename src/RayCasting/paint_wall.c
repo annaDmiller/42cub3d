@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:37:11 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/04 13:29:55 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:27:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	paint_wall(t_mlx *mlx, int x_img, float bot_pxl, float top_pxl)
 	texture = check_side(mlx, mlx->ray->hit_vert_wall);
 	x_text = find_x_offset(mlx, mlx->ray->hit_vert_wall, texture);
 	y_step = texture->height / (mlx->ray->wall_height);
-	y_text = ((top_pxl - (SCREEN_HIGHT / 2) + (mlx->ray->wall_height
+	y_text = ((top_pxl - (SCREEN_HEIGHT / 2) + (mlx->ray->wall_height
 					/ 2)) * y_step);
 	if (y_text < 0)
 		y_text = 0;

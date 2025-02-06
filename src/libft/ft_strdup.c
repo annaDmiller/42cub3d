@@ -1,24 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   ft_strdup.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2024/08/24 17:50:07 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/06 18:38:14 by okapshai         ###   ########.fr       */
+/*   Created: 2024/02/22 16:13:18 by okapshai          #+#    #+#             */
+/*   Updated: 2025/02/06 17:32:13 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "cub3d.h"
 
-int	main(int argc, char **argv)
+char	*ft_strdup(char *src)
 {
-	t_data	*data;
+	char	*str;
+	char	*p;
 
-	data = NULL;
-	parsing(argc, argv, &data);
-	start_mlx(data);
-	clean_data(&data);
-	return (EXIT_SUCCESS);
+	str = malloc((ft_strlen(src) + 1) * sizeof(char));
+	p = str;
+	if (str == NULL)
+	{
+		return (0);
+	}
+	while (*src)
+		*p++ = *src++;
+	*p = '\0';
+	return (str);
 }

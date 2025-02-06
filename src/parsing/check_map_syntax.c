@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:23:35 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/05 18:18:00 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:05:18 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,6 +75,14 @@ int	check_directions_syntax(char *str)
 
 int	check_color_syntax(char *str)
 {
+	int	comma_count;
+
+	comma_count = count_commas(str);
+	if (comma_count != 2)
+	{
+		ft_putstr_fd("Error: Invalid color syntax, too many commas\n", 2);
+		return (EXIT_FAILURE);
+	}
 	while (*str == ' ' || *str == '\t')
 		str++;
 	if ((ft_strncmp(str, "F ", 2) != 0) && (ft_strncmp(str, "C ", 2) != 0))

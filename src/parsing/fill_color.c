@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:54:17 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/04 13:38:27 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:20:45 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,7 +83,7 @@ void	check_value_limits(t_data **data, t_list **list, char **array,
 			if (len == -1)
 				clean_all_exit(data, list, "RGB value syntax error\n");
 			if (len > 3)
-				clean_all_exit(data, list, "RGB value is too long\n");
+				clean_all_exit(data, list, "RGB len should be max 3 chars\n");
 			if (nbr > 255)
 				clean_all_exit(data, list, "RGB value is too big\n");
 		}

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:09:57 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 16:37:54 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:27:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,9 @@ void	render_floor_ceiling(t_mlx *mlx)
 	while (x < SCREEN_WIDTH)
 	{
 		y = 0;
-		while (y < SCREEN_HIGHT)
+		while (y < SCREEN_HEIGHT)
 		{
-			if (y < SCREEN_HIGHT / 2)
+			if (y < SCREEN_HEIGHT / 2)
 				put_pix_to_img(mlx, x, y, trgb(0, mlx->map->ceiling_rgb[0],
 						mlx->map->ceiling_rgb[1], mlx->map->ceiling_rgb[2]));
 			else

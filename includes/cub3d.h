@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/04 13:47:53 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/06 18:22:15 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +34,10 @@
 # define RESET "\033[0m"
 
 # define SCREEN_WIDTH 1000
-# define SCREEN_HIGHT 500
+# define SCREEN_HEIGHT 500
 # define PLAYER_SIGHT 60
 # define CELL_SIZE 64
-# define MOV_SPEED 16
+# define MOV_SPEED 8
 # define ROT_SPEED 0.05
 
 # define ESCAPE 65307
@@ -47,12 +47,6 @@
 # define D_KEY 100
 # define LEFT 65361
 # define RIGHT 65363
-
-// //keys for Anna
-// # define W_KEY 1731
-// # define S_KEY 1753
-// # define D_KEY 1751
-// # define A_KEY 1734
 
 enum				e_player
 {
@@ -182,7 +176,8 @@ void				create_map_in_list(int fd, t_list **list);
 int					set_line_type(char *str);
 int					is_direction_char(char c);
 int					is_color_char(char c);
-void				clean_list_with_syntax_error(t_list **list, int i, char *line, char *message);
+void				clean_list_with_syntax_error(t_list **list, int i,
+						char *line, char *message);
 void				clean_list(t_list **list, char *message);
 void				check_map_open(char *filename, int *fd);
 void				increment_texture_count(int *duplicates, int dir);
@@ -203,25 +198,20 @@ void				check_directions_duplicates(t_list **list, int *duplicates,
 void				check_color_duplicates(t_list **list, int *dup, char *str,
 						int i);
 void				check_missing_lines(t_list **list, int *dup);
-
+int					count_commas(char *str);
 void				check_map_empty_lines(t_list **list);
-
 int					check_map_close_fd(int fd, t_list *list);
-
 void				check_map_is_closed(t_data **data);
 int					check_close_chars(char *str);
-void				check_first_last_char(t_data **data);
-void				check_inside_map(t_data **data);
-void				check_direction_side(t_data **data, int x, int y,
-						int direction);
 void				initialize_data(t_data **data, t_list **list);
 void				init_data(t_data **data, t_list **list);
 void				fill_texture(t_data **data, t_list **list, char **dest,
 						char *src);
 char				*trimmed_string(char *str, char *set);
-void				fill_colors(t_data **data, t_list **list, int *dst_rgb, char *src);
-int					get_rgb_value(t_data **data, t_list **list, char **str, int *dst_rgb);
-int					check_rgb_syntax(char *str);
+void				fill_colors(t_data **data, t_list **list, int *dst_rgb,
+						char *src);
+int					get_rgb_value(t_data **data, t_list **list, char **str,
+						int *dst_rgb);
 void				check_value_limits(t_data **data, t_list **list,
 						char **array, char **str);
 int					count_digits(char *str);
@@ -239,14 +229,20 @@ void				check_if_texture_path_is_directory(t_data **data, int *fd,
 						void *mlx);
 void				close_texture_files(t_data **data, int *fd);
 void				close_all_textures(int *fd);
-int					check_texture_size(char *path, void *mlx);
 void				clean_mlx_data_fd_exit(t_data **data, void *mlx, int *fd,
 						char *msg);
 void				close_error_texture_file(t_data **data, int *fd);
 void				open_textures(t_data **data, int *fd, void *mlx);
-void				print_map(t_data *data);
 int					handle_keypress(int keycode, t_mlx *mlx);
 int					handle_close(t_mlx *mlx);
+void				check_map_is_closed(t_data **data);
+void				free_map_copy(char **temp_map, int height);
+void				find_start_point(char **map, t_data *data, int *start_x,
+						int *start_y);
+char				**copy_map(t_data *data);
+void				flood_fill(char **map, int x, int y, t_data *data);
+int					is_out_of_bounds(int x, int y, t_data *data);
+
 
 /*LIBFT*/
 
@@ -268,9 +264,10 @@ char				*ft_strndup(char *str, int n);
 int					get_next_line(int fd, char **line);
 int					ft_putstr_fd(char *s, int fd);
 char				*ft_strtrim(const char *s1, const char *set);
+char				*ft_strdup(char *src);
 
 /*MLX_INIT*/
-int 				mlx_init_struct(t_mlx *mlx);
+int					mlx_init_struct(t_mlx *mlx);
 void				start_mlx(t_data *data);
 void				set_texture(t_mlx *mlx);
 int					create_placeholder_image(void *mlx_ptr, t_img *img);

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/23 15:56:30 by olly              #+#    #+#             */
-/*   Updated: 2025/02/03 16:35:17 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:27:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	set_texture(t_mlx *mlx)
 	mlx->mlx_ptr = mlx_init();
 	if (!mlx->mlx_ptr)
 		return ;
-	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, SCREEN_WIDTH, SCREEN_HIGHT,
+	mlx->win_ptr = mlx_new_window(mlx->mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT,
 			"O&A Dynamics");
 	if (!mlx->win_ptr)
 		return (clean_mlx(mlx));
@@ -50,12 +50,12 @@ int	upload_texture(void *mlx_ptr, char *txt_name, t_img *img)
 
 int	create_placeholder_image(void *mlx_ptr, t_img *img)
 {
-	img->img = mlx_new_image(mlx_ptr, SCREEN_WIDTH, SCREEN_HIGHT);
+	img->img = mlx_new_image(mlx_ptr, SCREEN_WIDTH, SCREEN_HEIGHT);
 	if (!img->img)
 		return (EXIT_FAILURE);
 	img->address = (int *)mlx_get_data_addr(img->img, &img->bits_per_pixel,
 			&img->line_length, &img->endian);
 	img->width = SCREEN_WIDTH;
-	img->height = SCREEN_HIGHT;
+	img->height = SCREEN_HEIGHT;
 	return (EXIT_SUCCESS);
 }

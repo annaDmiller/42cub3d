@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:36:20 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 16:36:21 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:27:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ void	draw_line(t_mlx *mlx, int screen_line)
 		mlx->ray->dist *= -1;
 	mlx->ray->wall_height = (SCREEN_WIDTH / (2 * tan(mlx->player[SIGHT] / 2))
 			* (CELL_SIZE / mlx->ray->dist));
-	wall_top_pxl = (SCREEN_HIGHT / 2) - (mlx->ray->wall_height / 2);
-	wall_bot_pxl = (SCREEN_HIGHT / 2) + (mlx->ray->wall_height / 2);
-	if (wall_bot_pxl > SCREEN_HIGHT)
-		wall_bot_pxl = SCREEN_HIGHT;
+	wall_top_pxl = (SCREEN_HEIGHT / 2) - (mlx->ray->wall_height / 2);
+	wall_bot_pxl = (SCREEN_HEIGHT / 2) + (mlx->ray->wall_height / 2);
+	if (wall_bot_pxl > SCREEN_HEIGHT)
+		wall_bot_pxl = SCREEN_HEIGHT;
 	if (wall_top_pxl < 0)
 		wall_top_pxl = 0;
 	paint_wall(mlx, screen_line, wall_bot_pxl, wall_top_pxl);

@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/03 16:10:13 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 16:38:02 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/06 17:27:06 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,7 @@ void	put_pix_to_img(t_mlx *mlx, int x, int y, int color)
 {
 	char	*pix;
 
-	if (y < 0 || y > SCREEN_HIGHT - 1 || x < 0 || x > SCREEN_WIDTH - 1)
+	if (y < 0 || y > SCREEN_HEIGHT - 1 || x < 0 || x > SCREEN_WIDTH - 1)
 		return ;
 	pix = ((char *)mlx->image[PLACEHOLDER].address + (y
 				* mlx->image[PLACEHOLDER].line_length + x

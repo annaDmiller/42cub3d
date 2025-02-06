@@ -6,7 +6,7 @@
 #    By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/01/02 17:22:56 by okapshai          #+#    #+#              #
-#    Updated: 2025/02/04 13:37:05 by okapshai         ###   ########.fr        #
+#    Updated: 2025/02/06 17:33:12 by okapshai         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -80,6 +80,7 @@ SRCS_LIBFT_FILES    := \
                     ft_strncmp.c \
                     ft_strndup.c \
                     ft_strtrim.c \
+					ft_strdup.c \
                     get_next_line.c
 
 SRCS_LIBFT          := $(addprefix $(LIBFT_DIR), $(SRCS_LIBFT_FILES))
