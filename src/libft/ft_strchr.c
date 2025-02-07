@@ -6,11 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 15:49:34 by okapshai          #+#    #+#             */
-/*   Updated: 2025/01/10 16:08:42 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:12:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "../../includes/cub3d.h"
 
 char	*ft_strchr(char *str, char c)
 {

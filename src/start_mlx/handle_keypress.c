@@ -6,11 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/26 18:18:29 by olly              #+#    #+#             */
-/*   Updated: 2025/02/04 13:47:36 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:12:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	calculate_movement_vector(t_mlx *mlx, double dist[2])
 {

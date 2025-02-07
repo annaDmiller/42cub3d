@@ -6,11 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 12:02:13 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 16:33:32 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:12:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 void	check_argc(int argc, char **argv)
 {

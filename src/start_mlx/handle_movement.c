@@ -6,11 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/02/04 13:35:15 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/04 13:46:06 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:12:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 static int	is_valid_position(t_mlx *mlx, double new_pos[2])
 {

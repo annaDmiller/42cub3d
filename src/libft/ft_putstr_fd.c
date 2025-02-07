@@ -6,11 +6,11 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/05/23 17:36:16 by lasablon          #+#    #+#             */
-/*   Updated: 2025/01/10 16:03:41 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:12:47 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/cub3d.h"
+#include "../../includes/cub3d.h"
 
 int	ft_putstr_fd(char *s, int fd)
 {
