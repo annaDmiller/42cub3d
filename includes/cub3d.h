@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/06 18:35:44 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/06 18:22:15 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:04:23 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -242,7 +242,6 @@ void				find_start_point(char **map, t_data *data, int *start_x,
 char				**copy_map(t_data *data);
 void				flood_fill(char **map, int x, int y, t_data *data);
 int					is_out_of_bounds(int x, int y, t_data *data);
-
 
 /*LIBFT*/
 

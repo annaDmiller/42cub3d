@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/10 11:59:20 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/03 17:32:29 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:00:15 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	check_map_empty_lines(t_list **list)
 	{
 		if (tmp->type == EMPTY_LINE)
 			clean_list_with_syntax_error(list, i, tmp->line,
-				"Map has a space line\n");
+				"Map has an empty line\n");
 		i++;
 		tmp = tmp->next;
 	}

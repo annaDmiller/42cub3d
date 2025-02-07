@@ -6,7 +6,7 @@
 /*   By: okapshai <okapshai@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/07 14:31:52 by okapshai          #+#    #+#             */
-/*   Updated: 2025/02/06 18:09:23 by okapshai         ###   ########.fr       */
+/*   Updated: 2025/02/07 11:02:56 by okapshai         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ void	free_map_copy(char **temp_map, int height)
 	int	i;
 
 	if (!temp_map)
-		return;
+		return ;
 	i = 0;
 	while (i < height)
 	{
