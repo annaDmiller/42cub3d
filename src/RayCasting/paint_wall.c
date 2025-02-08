@@ -62,8 +62,8 @@ static t_img	*check_side(t_mlx *mlx, int hit_vert_wall)
 static float	find_x_offset(t_mlx *mlx, int hit_vert_wall, t_img *texture)
 {
 	if (hit_vert_wall == 1)
-		return (fmodf(mlx->ray->wall_hit_y * (texture->width / CELL_SIZE),
-				texture->width));
-	return (fmodf(mlx->ray->wall_hit_x * (texture->width / CELL_SIZE),
-			texture->width));
+		return (fmodf(fmodf(mlx->ray->wall_hit_y, CELL_SIZE)
+				* (texture->width / CELL_SIZE), texture->width));
+	return (fmodf(fmodf(mlx->ray->wall_hit_x, CELL_SIZE)
+			* (texture->width / CELL_SIZE), texture->width));
 }

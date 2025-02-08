@@ -33,8 +33,8 @@
 # define CYAN "\033[1;36m"
 # define RESET "\033[0m"
 
-# define SCREEN_WIDTH 1000
-# define SCREEN_HEIGHT 500
+# define SCREEN_WIDTH 1100
+# define SCREEN_HEIGHT 750
 # define PLAYER_SIGHT 60
 # define CELL_SIZE 64
 # define MOV_SPEED 8
